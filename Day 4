@@ -1,0 +1,354 @@
+
+최종 출력될 정보에 따라 원하는 컬럼 select 절에 추가
+원하는 정보를 가진 테이블들을 from 절에서 추가
+where 절에 알맞은 join 조건 추가
+where 절에 알맞은 검색 조건 추가
+필요에 따라 Group by, having  등을 통해 Grouping
+정렬 조건 order by 에 추가
+
+
+부서별 총합 연봉
+SELECT SUM(E.SALARY), J.JOB_TITLE
+FROM EMPLOYEES E JOIN JOBS J
+ON E.JOB_ID = J.JOB_ID
+GROUP BY J.JOB_TITLE
+ORDER BY SUM(E.SALARY) DESC
+/
+
+SELECT J.JOB_TITLE, TO_CHAR(SUM(E.SALARY), '999,999') AS TOTAL_SALARY 
+FROM EMPLOYEES E JOIN JOBS J
+ON E.JOB_ID = J.JOB_ID
+GROUP BY J.JOB_TITLE
+ORDER BY TOTAL_SALARY DESC
+/
+
+
+**집합함수에서는 무조건 GROUP 이 나와야 함/
+**두번째는 소수점을 숫자 세개씩 찍어서 넣을때 필요한 공식
+
+
+각 사원에 대해서 사번 이름 부서명 매니저의 이름을 조회하시요
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME, M.FIRST_NAME
+FROM EMPLOYEES E LEFT JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+
+LEFT JOIN DEPARTMENTS M
+ON E.MANAGER_ID = M.FRIST_NAME	//틀린 내가 한거
+
+
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME, M.FIRST_NAME
+FROM EMPLOYEES E LEFT OUTER JOIN DEPARTMENTS D
+	ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+	LEFT OUTER JOIN EMPLOYEES M
+	ON E.MANAGER_ID = M.EMPLOYEE_ID			//맞는 답
+/
+
+
+자신의 매니저보다 채용일이 빠른 사원의 사번 성 채용일을 조회할 것.
+
+SELECT E.EMPLOYEE_ID, E.LAST_NAME, E.HIRE_DATE, E.MANAGER_ID
+FROM EMPLOYEES E JOIN EMPLOYEES E
+ON E.EMPOYEE_ID = E.MANAGER_ID		//틀린 답
+/
+
+SELECT EMPLOYEE_ID, LAST_NAME, HIRE_DATE
+FROM EMPLOYEES
+WHERE HIRE_DATE < (SELECT M.HIRE_DATE
+		FROM EMPLOYEES E JOIN EMPLOYEES M
+		ON E.MANAGER_ID = M.EMPLOYEE_ID
+		WHERE E.EMPLOYEE_ID = 118)
+/							//맞는 답
+
+
+자신의 부서 평균 급여보다 연봉이 많은 사원의 사번 성 연봉을 조회
+
+SELECT EMPLOYEE_ID, LAST_NAME, SALARY
+FROM EMPLOYEES
+WHERE SALARY > (SELECT D.SALARY
+		FROM EMPLOYEES E JOIN EMPLOYESS D
+		ON 				//틀린 답
+
+SELECT EMPLOYEE_ID, LAST_NAME, SALARY
+FROM EMPLOYEES
+WHERE SALARY > (자신의 부서 평균 급여)
+
+SELECT AVG(SALARY) 
+FROM EMPLOYEES 
+WHERE DEPARTMENT_ID = (내 부서 ID)
+
+SELECT DEPARTMENT_ID 
+FROM EMPLOYEES
+WHERE EMPLOYEE_ID = 118 (*임의로 정한 사원번호)
+
+
+
+SELECT EMPLOYEE_ID, LAST_NAME, SALARY
+FROM EMPLOYEES
+WHERE SALARY > (SELECT AVG(SALARY) 
+		FROM EMPLOYEES 
+		WHERE DEPARTMENT_ID =(SELECT DEPARTMENT_ID 
+					FROM EMPLOYEES
+					WHERE EMPLOYEE_ID = 118))
+/
+
+
+
+입사일이 2005년 이전 직원들의 부서, 이름, 입사일, 부서주소를 다음과 같이출력, 
+출력시 입사일 빠른 순으로 정렬하시오
+
+부서 이름 입사일 주소
+executive lex de haan 13-jan-01 2004 Charade Rd, Seattle, Washington, United States of America, Americas
+
+
+select d.department_name, e.first_name, e.hire_date, (l.location_id||', '||l.street_address||', '||l.postal_code||', '||l.city||', '||l.state_province||', '||l.country_id) as Address
+from departments d join employees e
+on d.department_id = e.department_id
+join locations l
+on d.location_id = l.location_id
+where hire_date < '05/01/01'
+order by hire_date
+/						//맞은 답
+
+select d.department_name as 부서, e.first_name ||' '|| e.last_name as 이름
+, e.hire_date as 입사일, l.street_address ||', '|| l.city ||', '|| l.state_province ||'. '
+|| c.country_name ||', '||r.region_name as 주소
+from employees e join departments d
+	on e.department_id = d.department_id
+	join locations l on d.location_id = l.location_id
+	join countries c on l.country_id = c.country_id
+	join regions r on c.region_id = r.region_id
+where e.hire_date < '05/01/01'
+order by e.hire_date
+/							//다시 확인
+
+//order by 는 정해진 폼이 더이상 변하지 않은채로 정렬할때 사용
+//where 은 정해진 폼에서 조건으로 인해 변하게 될때 사용
+
+
+
+직책(job title) 이 sale manager 인 사원들의 입사년도와 입사년도(hire_date)별 평균 급여를 출력하시오
+출력 시 년도를 기준으로 오름차순 정렬하시오
+
+SELECT HIRE_DATE, SALARY
+FROM EMPLOYEES
+WHERE EMPLOYEE_ID = 'Sales Manager' 		// 틀린답
+/
+
+
+SELECT TO_CHAR(E.HIRE_DATE, 'YYYY') AS HIRE_DATE, AVG(E.SALARY) AS AVG
+FROM EMPLOYEES E JOIN JOBS J
+	ON E.JOB_ID = J.JOB_ID
+WHERE J.JOB_TITLE = 'Sales Manager'
+GROUP BY TO_CHAR(E.HIRE_DATE,'YYYY')
+ORDER BY TO_CHAR(E.HIRE_DATE,'YYYY')
+/							//강사님 답
+
+SELECT HIRE_DATE, AVG(E.SALARY)
+FROM EMPLOYEES E JOIN JOBS J
+ON E.JOB_ID = J.JOB_ID
+WHERE J.JOB_TITLE = 'Sales Manager'
+GROUP BY HIRE_DATE
+ORDER BY HIRE_DATE
+/						//고친 개인 답  ** 다시 볼것
+
+
+각 도시(CITY)에 있는 모든 부서 직원들의 평균급여를 조회하고자 한다.
+--평균급여가 가장 낮은 도시부터 도시명(CITY)과 평균연봉, 해당 도시의 직원수를 출력하시오
+--단, 도시에 근무하는 직원이 최소 3명 이상 근무하는 지역만 조회하시오
+
+
+SELECT D.DEPARTMENT_NAME, AVG(E.SALARY)
+FROM DEPARTMENTS D EMPLOYEES E
+ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+
+WHERE D.DEPARTMENT_NAME
+/						//틀린 내 답
+
+SELECT L.CITY, AVG(E.SALARY), COUNT(*)
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+	ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+	JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID
+GROUP BY L.CITY
+HAVING COUNT(*) > 2
+ORDER BY AVG(E.SALARY)
+/						//정답
+
+
+
+최종 출력될 정보에 따라 원하는 컬럼 select 절에 추가
+원하는 정보를 가진 테이블들을 from 절에서 추가
+where 절에 알맞은 join 조건 추가
+where 절에 알맞은 검색 조건 추가
+필요에 따라 Group by, having  등을 통해 Grouping
+정렬 조건 order by 에 추가
+
+'Public Accountant' 직책(job_title)으로 과거에 근무한 적이 있는 모든 사원의 사번과 이름을 출력하시오
+--(현재 'Public Accountant' 의 직책(job_title)으로 근무하는 사원은 고려 하지 않는다.)
+--(다음과 같이 출력한다.
+
+사번 이름 시작일 종료일
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME ||', '|| LAST_NAME AS NAME, JH.START_DATE, JH.END_DATE
+FROM EMPLOYEES E JOIN JOB_HISTORY JH
+ON E.EMPLOYEE_ID = JH.EMPLOYEE_ID
+WHERE E.JOB_ID = JH.JOB_ID
+/							//내가 푼거 (틀림)
+
+SELECT E.EMPLOYEE_ID, CONCAT(CONCAT(E.FIRST_NAME,' '), E.LAST_NAME)
+	, H.START_DATE
+	, H.END_DATE
+FROM EMPLOYEES E JOIN JOB_HISTORY H
+	ON E.EMPLOYEE_ID = H.EMPLOYEE_ID
+	JOIN JOBS J ON H.JOB_ID = J.JOB_ID
+WHERE J.JOB_TITLE = 'Public Accountant'
+/							//정답
+
+
+
+2007년에 입사(hire_date) 한 직원들의 
+사번employee_id 이름first_name 성last_name 부서명departement_name을 조회하니다.
+이때 부서에 배치되지 않은 직원의 경우, '<Not Assigend>' 로 출력하시오
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.LAST_NAME, NVL((D.DEPARTMENT_NAME), '<Not Assigend>')
+FROM EMPLOYEES E LEFT JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+WHERE HIRE_DATE LIKE '07%'
+/						//정답
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.LAST_NAME, NVL((D.DEPARTMENT_NAME), '<Not Assigend>')
+FROM EMPLOYEES E LEFT JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+WHERE TO_CHAR(E.HIRE_DATE, 'YYYY') = '2007'  2007 인티저 값으로 넣을것
+ORDER BY E.EMPLOYEE_ID
+/						//강사님 정답
+
+부서별로 가장 적은 급여를 받고 있는 직원의 이름, 부서이름, 급여를 출력하시오
+=--이름은 last.name 만 출력하여, 부서이름으로 오름차순 정렬하고,
+-- 부서가 같은경우 이름을 기준으로 오름차순 정렬하여 출력합니다.
+
+SELECT E.LAST_NAME, D.DEPARTMENT_NAME, E.SALARY
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+JOIN JOBS J ON J.JOB_ID = E.JOB_ID
+WHERE J.MIN_SALARY = E.SALARY
+ORDER BY E.LAST_NAME
+/					//내 답(틀림)
+
+
+SELECT E.LAST_NAME, A.DEPARTMENT_NAME, A.MIN_SALARY
+FROM EMPLOYEES E JOIN
+	(SELECT D.DEPARTMENT_ID, D.DEPARTMENT_NAME, MIN(E.SALARY) AS MIN_SALARY
+	FROM EMPLOYEES E JOIN DEPARTMENTS D
+		ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+	GROUP BY D.DEPARTMENT_ID, D.DEPARTMENT_NAME
+	) A
+		ON E.DEPARTMENT_ID = A.DEPARTMENT_ID AND E.SALARY = A.MIN_SALARY
+	ORDER BY A.DEPARTMENT_NAME, E.LAST_NAME
+/						//강사님 답
+
+
+사원의 부서가 속한 도시(CITY) 가 'Seattle' 인 사원의 이름, 해당 사원의 매니저 이름, 사원의 부서이름을 출력하시오
+==이때 사원의 매니저가 없을 경우 '<없음>' 이라고 출력하시오. 이름은 last_name 만 출력하며,
+--사원의 이름을 오름차순으로 정렬하시오
+
+SELECT E.LAST_NAME, E.MANAGER_ID, D.DEPARTMENT_NAME
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+JOIN LOCATIONS L 
+ON D.LOCATION_ID = L.LOCATION_ID
+WHERE CITY = 'Seattle'
+ORDER BY E.LAST_NAME
+/					//내 답 (틀림
+
+
+SELECT E.E_NAME, NVL(E.M_NAME, '<없음>') AS LNAME, D.DEPARTMENT_NAME
+FROM
+	(SELECT A.LAST_NAME AS E_NAME, B.LAST_NAME AS M_NAME, A.DEPARTMENT_ID
+	FROM EMPLOYEES A LEFT JOIN EMPLOYEES B
+ON A.MANAGER_ID = B.EMPLOYEE_ID
+	) E JOIN DEPARTMENTS D
+	ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+	JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID
+WHERE L.CITY = 'Seattle'
+ORDER BY E.E_NAME
+/					//정답
+
+
+각 업무(JOB)별로 연봉(SALARY)의 총합을 구하고자 한다. 연봉 총합이 가장 높은 업무부터
+업무명(JOB_TITLE)과 연봉 총합을 내림차순으로 조회하시오. 단 연봉총합이 30,000보다
+큰 업무만 출력하시오
+
+
+SELECT J.JOB_TITLE, SUM(E.SALARY)
+FROM JOBS J JOIN EMPLOYEES E
+ON J.JOB_ID = E.JOB_ID
+GROUP BY E.SALARY > 30000
+ORDER BY E.SALARY DESC
+/					//내 답 (틀림)
+
+SELECT J.JOB_TITLE, SUM(E.SALARY) AS TOTAL_SAL
+FROM JOBS J JOIN EMPLOYEES E
+ON J.JOB_ID = E.JOB_ID
+GROUP BY J.JOB_TITLE
+HAVING SUM(E.SALARY) > 30000
+ORDER BY SUM(E.SALARY) DESC
+/					//정답
+
+
+'Sales' 부서에 속한 직원의 이름(first_name), 급여(salary), 부서이름 (department_name) 을 조회하시오.
+-- 단 급여는 100번 부서의 평균보다 적게 받는 직원 정보만 출력되어야 한다.
+
+SELECT E.FIRST_NAME, E.SALARY, D.DEPARTMENT_NAME
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+WHERE DEPARTMENT_NAME = 'Sales'
+AND E.SALARY < (SELECT AVG(SALARY)
+		FROM EMPLOYEES
+		WHERE DEPARTMENT_ID = 100)
+/						// 내 답 ** AND 와 OR 를 잘 써보자
+
+SELECT E.FIRST_NAME, E.SALARY, D.DEPARTMENT_NAME
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+	ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+	CROSS JOIN(SELECT AVG(SALARY) AS SAL
+		FROM EMPLOYEES
+		WHERE DEPARTMENT_ID = 100) SAL100
+WHERE D.DEPARTMENT_NAME = 'Sales'
+AND E.SALARY < SAL100.SAL
+/						//이런 방식으로도 가능, 한번 봐둘것.
+
+
+부서별 직원들의 최대, 최소, 평균급여(소수점 이하 절사)를 조회하되 **소수점 자르기 TRUNC/
+평균급여가 'IT' 부서의 평균급여보다 많고, 'Sales' 부서의 평균보다 적은 부서 정보만 출력하시오
+
+DEPARTMENT_NAME MAX_SAL MIN_SAL AVG_SAL
+
+
+SELECT D.DEPARTMENT_NAME, J.MAX_SAL, J.MIN_SALARY, AVG(E.SALARY)
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+JOIN JOBS J ON J.JOB_ID = E.JOB_ID
+GRUOP BY D.DEPARTMENT_NAME
+HAVIGN AVG(E.SALARY)
+/							//내 답 (틀림)
+
+
+SELECT D.DEPARTMENT_NAME, MAX(E.SALARY) AS MAX_SAL, MIN(E.SALARY) AS MIN_SAL,
+	TRUNC(AVG(E.SALARY), 0) AS AVG_SAL
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+GROUP BY D.DEPARTMENT_NAME
+HAVING TRUNC(AVG(E.SALARY), 0) > (SELECT TRUNC(AVG(E.SALARY), 0)
+				FROM EMPLOYEES E JOIN DEPARTMENTS D
+				ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+				WHERE D.DEPARTMENT_NAME = 'IT' )
+AND TRUNC(AVG(E.SALARY), 0) < (SELECT TRUNC(AVG(E.SALARY), 0)
+				FROM EMPLOYEES E JOIN DEPARTMENTS D
+				ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+				WHERE D.DEPARTMENT_NAME = 'Sales')
+/							//정답
+
+
+
