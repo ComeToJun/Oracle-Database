@@ -1,0 +1,5070 @@
+
+SQL*Plus: Release 18.0.0.0.0 - Production on 화 6월 30 08:51:05 2020
+Version 18.4.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+비밀번호 입력:
+
+다음에 접속됨:
+Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+
+SQL> sqlplus c##scott
+SP2-0734: "sqlplus c#..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+SQL> exit
+Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0에서 분리되었습니다.
+
+D:\OracleWorkplace>sqlplus c##scott
+
+SQL*Plus: Release 18.0.0.0.0 - Production on 화 6월 30 08:51:47 2020
+Version 18.4.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+비밀번호 입력:
+마지막 성공한 로그인 시간: 월 6월  29 2020 17:34:19 +09:00
+
+다음에 접속됨:
+Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+
+SQL> select * from emp;
+
+     EMPNO ENAME                JOB                       MGR HIREDATE
+---------- -------------------- ------------------ ---------- --------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7369 SMITH                CLERK                    7902 80/12/17
+       800                    20
+
+      7499 ALLEN                SALESMAN                 7698 81/02/20
+      1600        300         30
+
+      7521 WARD                 SALESMAN                 7698 81/02/22
+      1250        500         30
+
+
+     EMPNO ENAME                JOB                       MGR HIREDATE
+---------- -------------------- ------------------ ---------- --------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7566 JONES                MANAGER                  7839 81/04/02
+      2975                    20
+
+      7654 MARTIN               SALESMAN                 7698 81/09/28
+      1250       1400         30
+
+      7698 BLAKE                MANAGER                  7839 81/05/01
+      2850                    30
+
+
+     EMPNO ENAME                JOB                       MGR HIREDATE
+---------- -------------------- ------------------ ---------- --------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7782 CLARK                MANAGER                  7839 81/06/09
+      2450                    10
+
+      7788 SCOTT                ANALYST                  7566 82/12/09
+      3000                    20
+
+      7839 KING                 PRESIDENT                     81/11/17
+      5000                    10
+
+
+     EMPNO ENAME                JOB                       MGR HIREDATE
+---------- -------------------- ------------------ ---------- --------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7844 TURNER               SALESMAN                 7698 81/09/08
+      1500                    30
+
+      7876 ADAMS                CLERK                    7788 83/01/12
+      1100                    20
+
+      7900 JAMES                CLERK                    7698 81/12/03
+       950                    30
+
+
+     EMPNO ENAME                JOB                       MGR HIREDATE
+---------- -------------------- ------------------ ---------- --------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7902 FORD                 ANALYST                  7566 81/12/03
+      3000                    20
+
+      7934 MILLER               CLERK                    7782 82/01/23
+      1300                    10
+
+
+14 행이 선택되었습니다.
+
+SQL> set lines 250
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+SALGRADE
+TABLE
+
+
+SQL> col name for a15
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+SALGRADE
+TABLE
+
+
+SQL> desc emp
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ EMPNO
+                                 NOT NULL NUMBER(4)
+ ENAME
+                                          VARCHAR2(10)
+ JOB
+                                          VARCHAR2(9)
+ MGR
+                                          NUMBER(4)
+ HIREDATE
+                                          DATE
+ SAL
+                                          NUMBER(7,2)
+ COMM
+                                          NUMBER(7,2)
+ DEPTNO
+                                          NUMBER(2)
+
+SQL> select * from emp
+  2  ;
+
+     EMPNO ENAME                JOB                       MGR HIREDATE        SAL       COMM     DEPTNO
+---------- -------------------- ------------------ ---------- -------- ---------- ---------- ----------
+      7369 SMITH                CLERK                    7902 80/12/17        800                    20
+      7499 ALLEN                SALESMAN                 7698 81/02/20       1600        300         30
+      7521 WARD                 SALESMAN                 7698 81/02/22       1250        500         30
+      7566 JONES                MANAGER                  7839 81/04/02       2975                    20
+      7654 MARTIN               SALESMAN                 7698 81/09/28       1250       1400         30
+      7698 BLAKE                MANAGER                  7839 81/05/01       2850                    30
+      7782 CLARK                MANAGER                  7839 81/06/09       2450                    10
+      7788 SCOTT                ANALYST                  7566 82/12/09       3000                    20
+      7839 KING                 PRESIDENT                     81/11/17       5000                    10
+      7844 TURNER               SALESMAN                 7698 81/09/08       1500                    30
+      7876 ADAMS                CLERK                    7788 83/01/12       1100                    20
+
+     EMPNO ENAME                JOB                       MGR HIREDATE        SAL       COMM     DEPTNO
+---------- -------------------- ------------------ ---------- -------- ---------- ---------- ----------
+      7900 JAMES                CLERK                    7698 81/12/03        950                    30
+      7902 FORD                 ANALYST                  7566 81/12/03       3000                    20
+      7934 MILLER               CLERK                    7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> set pages 9999
+SQL> select * from emp;
+
+     EMPNO ENAME                JOB                       MGR HIREDATE        SAL       COMM     DEPTNO
+---------- -------------------- ------------------ ---------- -------- ---------- ---------- ----------
+      7369 SMITH                CLERK                    7902 80/12/17        800                    20
+      7499 ALLEN                SALESMAN                 7698 81/02/20       1600        300         30
+      7521 WARD                 SALESMAN                 7698 81/02/22       1250        500         30
+      7566 JONES                MANAGER                  7839 81/04/02       2975                    20
+      7654 MARTIN               SALESMAN                 7698 81/09/28       1250       1400         30
+      7698 BLAKE                MANAGER                  7839 81/05/01       2850                    30
+      7782 CLARK                MANAGER                  7839 81/06/09       2450                    10
+      7788 SCOTT                ANALYST                  7566 82/12/09       3000                    20
+      7839 KING                 PRESIDENT                     81/11/17       5000                    10
+      7844 TURNER               SALESMAN                 7698 81/09/08       1500                    30
+      7876 ADAMS                CLERK                    7788 83/01/12       1100                    20
+      7900 JAMES                CLERK                    7698 81/12/03        950                    30
+      7902 FORD                 ANALYST                  7566 81/12/03       3000                    20
+      7934 MILLER               CLERK                    7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> col ename for a10
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                       MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- ------------------ ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                    7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN                 7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN                 7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER                  7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN                 7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER                  7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER                  7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST                  7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                     81/11/17       5000                    10
+      7844 TURNER     SALESMAN                 7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                    7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                    7698 81/12/03        950                    30
+      7902 FORD       ANALYST                  7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                    7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> col jab for a10
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                       MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- ------------------ ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                    7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN                 7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN                 7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER                  7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN                 7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER                  7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER                  7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST                  7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                     81/11/17       5000                    10
+      7844 TURNER     SALESMAN                 7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                    7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                    7698 81/12/03        950                    30
+      7902 FORD       ANALYST                  7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                    7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> col job for a15
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select ename, 1000, sysdate from emp;
+
+ENAME            1000 SYSDATE
+---------- ---------- --------
+SMITH            1000 20/06/30
+ALLEN            1000 20/06/30
+WARD             1000 20/06/30
+JONES            1000 20/06/30
+MARTIN           1000 20/06/30
+BLAKE            1000 20/06/30
+CLARK            1000 20/06/30
+SCOTT            1000 20/06/30
+KING             1000 20/06/30
+TURNER           1000 20/06/30
+ADAMS            1000 20/06/30
+JAMES            1000 20/06/30
+FORD             1000 20/06/30
+MILLER           1000 20/06/30
+
+14 행이 선택되었습니다.
+
+SQL> select ename, job, sal from emp where sal >= 1200;
+
+ENAME      JOB                    SAL
+---------- --------------- ----------
+ALLEN      SALESMAN              1600
+WARD       SALESMAN              1250
+JONES      MANAGER               2975
+MARTIN     SALESMAN              1250
+BLAKE      MANAGER               2850
+CLARK      MANAGER               2450
+SCOTT      ANALYST               3000
+KING       PRESIDENT             5000
+TURNER     SALESMAN              1500
+FORD       ANALYST               3000
+MILLER     CLERK                 1300
+
+11 행이 선택되었습니다.
+
+SQL> select ename, nvl(to_char(mgr), 'No Manager') from emp
+  2  ;
+
+ENAME      NVL(TO_CHAR(MGR),'NOMANAGER')
+---------- --------------------------------------------------------------------------------
+SMITH      7902
+ALLEN      7698
+WARD       7698
+JONES      7839
+MARTIN     7698
+BLAKE      7839
+CLARK      7839
+SCOTT      7566
+KING       No Manager
+TURNER     7698
+ADAMS      7788
+JAMES      7698
+FORD       7566
+MILLER     7782
+
+14 행이 선택되었습니다.
+
+SQL> select sysdate from emp;
+
+SYSDATE
+--------
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+20/06/30
+
+14 행이 선택되었습니다.
+
+SQL> select empno, ename name, job from emp order by 2;
+
+     EMPNO NAME            JOB
+---------- --------------- ---------------
+      7876 ADAMS           CLERK
+      7499 ALLEN           SALESMAN
+      7698 BLAKE           MANAGER
+      7782 CLARK           MANAGER
+      7902 FORD            ANALYST
+      7900 JAMES           CLERK
+      7566 JONES           MANAGER
+      7839 KING            PRESIDENT
+      7654 MARTIN          SALESMAN
+      7934 MILLER          CLERK
+      7788 SCOTT           ANALYST
+      7369 SMITH           CLERK
+      7844 TURNER          SALESMAN
+      7521 WARD            SALESMAN
+
+14 행이 선택되었습니다.
+
+SQL> select empno, ename name, job from emp order by name;
+
+     EMPNO NAME            JOB
+---------- --------------- ---------------
+      7876 ADAMS           CLERK
+      7499 ALLEN           SALESMAN
+      7698 BLAKE           MANAGER
+      7782 CLARK           MANAGER
+      7902 FORD            ANALYST
+      7900 JAMES           CLERK
+      7566 JONES           MANAGER
+      7839 KING            PRESIDENT
+      7654 MARTIN          SALESMAN
+      7934 MILLER          CLERK
+      7788 SCOTT           ANALYST
+      7369 SMITH           CLERK
+      7844 TURNER          SALESMAN
+      7521 WARD            SALESMAN
+
+14 행이 선택되었습니다.
+
+SQL> select * from emp order BY deptno, sal asc;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+
+14 행이 선택되었습니다.
+
+SQL> select * from emp order BY deptno, sal desc;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+
+14 행이 선택되었습니다.
+
+SQL> select * from emp where ename like '_A%';
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+
+SQL>  select ename, job, sal from emp where job = 'MANAGER' or comm is not null;
+
+ENAME      JOB                    SAL
+---------- --------------- ----------
+ALLEN      SALESMAN              1600
+WARD       SALESMAN              1250
+JONES      MANAGER               2975
+MARTIN     SALESMAN              1250
+BLAKE      MANAGER               2850
+CLARK      MANAGER               2450
+
+6 행이 선택되었습니다.
+
+SQL> select ename, job, sal, case job
+  2  when 'CLERK' then 1.10*sal
+  3  from emp;
+from emp
+*
+3행에 오류:
+ORA-00905: 누락된 키워드
+
+
+SQL> select ename, job, sal, case job
+  2  when 'CLERK' then 1.10*sal
+  3  FROM emp;
+FROM emp
+*
+3행에 오류:
+ORA-00905: 누락된 키워드
+
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select ename, job, sal, case job
+  2  when 'CLERK' then 1.10*sal
+  3  when 'MANAGER' then 1.15*sal
+  4  when 'PRESIDENT' then 1.20*sal
+  5  else sal end revised_salary
+  6  from emp;
+
+ENAME      JOB                    SAL REVISED_SALARY
+---------- --------------- ---------- --------------
+SMITH      CLERK                  800            880
+ALLEN      SALESMAN              1600           1600
+WARD       SALESMAN              1250           1250
+JONES      MANAGER               2975        3421.25
+MARTIN     SALESMAN              1250           1250
+BLAKE      MANAGER               2850         3277.5
+CLARK      MANAGER               2450         2817.5
+SCOTT      ANALYST               3000           3000
+KING       PRESIDENT             5000           6000
+TURNER     SALESMAN              1500           1500
+ADAMS      CLERK                 1100           1210
+JAMES      CLERK                  950           1045
+FORD       ANALYST               3000           3000
+MILLER     CLERK                 1300           1430
+
+14 행이 선택되었습니다.
+
+SQL> select ename, job, sal, decode(job, 'CLERK', 1.10*sal,
+  2  'MANAGER', 1.15*sal,
+  3  'PRESIDENT', 1.20*sal,
+  4  sal) revised_salary
+  5  from emp;
+
+ENAME      JOB                    SAL REVISED_SALARY
+---------- --------------- ---------- --------------
+SMITH      CLERK                  800            880
+ALLEN      SALESMAN              1600           1600
+WARD       SALESMAN              1250           1250
+JONES      MANAGER               2975        3421.25
+MARTIN     SALESMAN              1250           1250
+BLAKE      MANAGER               2850         3277.5
+CLARK      MANAGER               2450         2817.5
+SCOTT      ANALYST               3000           3000
+KING       PRESIDENT             5000           6000
+TURNER     SALESMAN              1500           1500
+ADAMS      CLERK                 1100           1210
+JAMES      CLERK                  950           1045
+FORD       ANALYST               3000           3000
+MILLER     CLERK                 1300           1430
+
+14 행이 선택되었습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select ename, job, hiredate from emp where hiredate between '81/01/01' and '81/06/30';
+
+ENAME      JOB             HIREDATE
+---------- --------------- --------
+ALLEN      SALESMAN        81/02/20
+WARD       SALESMAN        81/02/22
+JONES      MANAGER         81/04/02
+BLAKE      MANAGER         81/05/01
+CLARK      MANAGER         81/06/09
+
+SQL> select sum(sal) from emp;
+
+  SUM(SAL)
+----------
+     29025
+
+SQL> select 24*31-1421+14 from dual;
+
+24*31-1421+14
+-------------
+         -663
+
+SQL> select avg(sal) from emp;
+
+  AVG(SAL)
+----------
+2073.21429
+
+SQL> select count(empno) from emp;
+
+COUNT(EMPNO)
+------------
+          14
+
+SQL> select * from emp where rownum < 10;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+
+9 행이 선택되었습니다.
+
+SQL> select count(comm) from emp;
+
+COUNT(COMM)
+-----------
+          3
+
+SQL> select *
+  2  from emp
+  3  where rownum > 10;
+
+선택된 레코드가 없습니다.
+
+SQL> select * from emp where rownum > 10l
+  2  select * from emp where rownum > 10;
+select * from emp where rownum > 10l
+                                   *
+1행에 오류:
+ORA-00933: SQL 명령어가 올바르게 종료되지 않았습니다
+
+
+SQL> select * from emp where rownum > 10;
+
+선택된 레코드가 없습니다.
+
+SQL> select empno, ename, job, sal, deptno from emp;
+
+     EMPNO ENAME      JOB                    SAL     DEPTNO
+---------- ---------- --------------- ---------- ----------
+      7369 SMITH      CLERK                  800         20
+      7499 ALLEN      SALESMAN              1600         30
+      7521 WARD       SALESMAN              1250         30
+      7566 JONES      MANAGER               2975         20
+      7654 MARTIN     SALESMAN              1250         30
+      7698 BLAKE      MANAGER               2850         30
+      7782 CLARK      MANAGER               2450         10
+      7788 SCOTT      ANALYST               3000         20
+      7839 KING       PRESIDENT             5000         10
+      7844 TURNER     SALESMAN              1500         30
+      7876 ADAMS      CLERK                 1100         20
+      7900 JAMES      CLERK                  950         30
+      7902 FORD       ANALYST               3000         20
+      7934 MILLER     CLERK                 1300         10
+
+14 행이 선택되었습니다.
+
+SQL> select empno, ename, job, sal, deptno
+  2  from emp
+  3  oreder by deptno;
+oreder by deptno
+       *
+3행에 오류:
+ORA-00933: SQL 명령어가 올바르게 종료되지 않았습니다
+
+
+SQL> select empno, ename, job, sal, deptno
+  2  from emp
+  3  order by deptno;
+
+     EMPNO ENAME      JOB                    SAL     DEPTNO
+---------- ---------- --------------- ---------- ----------
+      7782 CLARK      MANAGER               2450         10
+      7839 KING       PRESIDENT             5000         10
+      7934 MILLER     CLERK                 1300         10
+      7566 JONES      MANAGER               2975         20
+      7902 FORD       ANALYST               3000         20
+      7876 ADAMS      CLERK                 1100         20
+      7369 SMITH      CLERK                  800         20
+      7788 SCOTT      ANALYST               3000         20
+      7521 WARD       SALESMAN              1250         30
+      7844 TURNER     SALESMAN              1500         30
+      7499 ALLEN      SALESMAN              1600         30
+      7900 JAMES      CLERK                  950         30
+      7698 BLAKE      MANAGER               2850         30
+      7654 MARTIN     SALESMAN              1250         30
+
+14 행이 선택되었습니다.
+
+SQL> select deptno sum(sal)
+  2
+SQL> select deptno, sum(sal) from emp;
+select deptno, sum(sal) from emp
+       *
+1행에 오류:
+ORA-00937: 단일 그룹의 그룹 함수가 아닙니다
+
+
+SQL> select deptno, sum(sal) from emp
+  2  group by deptno;
+
+    DEPTNO   SUM(SAL)
+---------- ----------
+        30       9400
+        10       8750
+        20      10875
+
+SQL> select deptno, empno, sum(sal) from emp
+  2  group by deptno, empno;
+
+    DEPTNO      EMPNO   SUM(SAL)
+---------- ---------- ----------
+        30       7499       1600
+        30       7900        950
+        20       7369        800
+        30       7698       2850
+        10       7782       2450
+        20       7902       3000
+        10       7934       1300
+        20       7566       2975
+        10       7839       5000
+        30       7521       1250
+        30       7844       1500
+        30       7654       1250
+        20       7788       3000
+        20       7876       1100
+
+14 행이 선택되었습니다.
+
+SQL> select empno, deptno, sum(sal) from emp
+  2  group by empno, deptno;
+
+     EMPNO     DEPTNO   SUM(SAL)
+---------- ---------- ----------
+      7369         20        800
+      7654         30       1250
+      7782         10       2450
+      7788         20       3000
+      7499         30       1600
+      7566         20       2975
+      7844         30       1500
+      7521         30       1250
+      7839         10       5000
+      7698         30       2850
+      7876         20       1100
+      7934         10       1300
+      7900         30        950
+      7902         20       3000
+
+14 행이 선택되었습니다.
+
+SQL> select empno, sum(sal) from emp
+  2  group by empno;
+
+     EMPNO   SUM(SAL)
+---------- ----------
+      7782       2450
+      7788       3000
+      7698       2850
+      7876       1100
+      7521       1250
+      7566       2975
+      7902       3000
+      7499       1600
+      7900        950
+      7369        800
+      7654       1250
+      7934       1300
+      7839       5000
+      7844       1500
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select empno, sum(sal) from emp
+  2* group by empno
+SQL> /
+
+     EMPNO   SUM(SAL)
+---------- ----------
+      7782       2450
+      7788       3000
+      7698       2850
+      7876       1100
+      7521       1250
+      7566       2975
+      7902       3000
+      7499       1600
+      7900        950
+      7369        800
+      7654       1250
+      7934       1300
+      7839       5000
+      7844       1500
+
+14 행이 선택되었습니다.
+
+SQL> select deptno, sum(sal)
+  2  from emp
+  3  group by deptno
+  4  order by deptno;
+
+    DEPTNO   SUM(SAL)
+---------- ----------
+        10       8750
+        20      10875
+        30       9400
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno, sum(sal)
+  2  from emp
+  3  group by deptno, sum
+  4* order by deptno, sum
+SQL> /
+order by deptno, sum
+                 *
+4행에 오류:
+ORA-00904: "SUM": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno, sum(sal)
+  2  from emp
+  3  where sum(sal) > 10000
+  4  group by deptno
+  5* order by deptno
+SQL> /
+where sum(sal) > 10000
+      *
+3행에 오류:
+ORA-00934: 그룹 함수는 허가되지 않습니다
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno, sum(sal)
+  2  from emp
+  3  group by deptno
+  4  having sum(sal) > 10000
+  5* order by deptno
+SQL> /
+
+    DEPTNO   SUM(SAL)
+---------- ----------
+        20      10875
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select deptno, sum(deptno)
+  2  from emp
+  3  group by deptno
+  4  ;
+
+    DEPTNO SUM(DEPTNO)
+---------- -----------
+        30         180
+        10          30
+        20         100
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno, sum(sal)
+  2  from emp
+  3* group by deptno
+  4  /
+
+    DEPTNO   SUM(SAL)
+---------- ----------
+        30       9400
+        10       8750
+        20      10875
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno, sum(sal)
+  2  from emp
+  3  group by deptno
+  4* order by deptno
+SQL> /
+
+    DEPTNO   SUM(SAL)
+---------- ----------
+        10       8750
+        20      10875
+        30       9400
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno, deptno10, deptno20, deptno30, deptno40, sum(sal)
+  2  from emp
+  3  group by deptno, deptno10, deptno20, deptno30, deptno40,
+  4* order by deptno, deptno10, deptno20, deptno30, deptno40,
+SQL> /
+order by deptno, deptno10, deptno20, deptno30, deptno40,
+*
+4행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> select deptno, sum(decode(deptno, 10, sal, 0)) deptno10,
+  2  sum(decode(deptno, 20, sal, 0)) deptno20,
+  3  sum(decode(deptno, 30, sal, 0)) deptno30,
+  4  sum(decode(deptno, 40, sal, 0)) deptno40
+  5  from emp
+  6  group by deptno
+  7  order by deptno;
+
+    DEPTNO   DEPTNO10   DEPTNO20   DEPTNO30   DEPTNO40
+---------- ---------- ---------- ---------- ----------
+        10       8750          0          0          0
+        20          0      10875          0          0
+        30          0          0       9400          0
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno,
+  2  sum(decode(deptno, 10, sal, 0)) deptno10,
+  3  sum(decode(deptno, 20, sal, 0)) deptno20,
+  4  sum(decode(deptno, 30, sal, 0)) deptno30,
+  5  sum(decode(deptno, 40, sal, 0)) deptno40
+  6  from emp
+  7  group by deptno
+  8* order by deptno
+SQL> /
+
+    DEPTNO   DEPTNO10   DEPTNO20   DEPTNO30   DEPTNO40
+---------- ---------- ---------- ---------- ----------
+        10       8750          0          0          0
+        20          0      10875          0          0
+        30          0          0       9400          0
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno case deptno
+  2    2  when deptno 10 then sal 0
+  3    3  when deptno 20 then sal 0
+  4    4  when deptno 30 then sal 0
+  5    5  when deptno 30 then sal 0
+  6    6  from emp
+  7  group by deptno
+  8* order by deptno
+SQL> /
+select deptno case deptno
+                   *
+1행에 오류:
+ORA-00923: FROM 키워드가 필요한 위치에 없습니다.
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno case deptno
+  2  when deptno 10 then sal 0
+  3  when deptno 20 then sal 0
+  4  when deptno 30 then sal 0
+  5  when deptno 30 then sal 0
+  6  from emp
+  7  group by deptno
+  8* order by deptno
+SQL> /
+select deptno case deptno
+                   *
+1행에 오류:
+ORA-00923: FROM 키워드가 필요한 위치에 없습니다.
+
+
+SQL> select * from dept
+  2  ;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+12 행이 선택되었습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+12 행이 선택되었습니다.
+
+SQL> select ename, loc, from emp, dept;
+select ename, loc, from emp, dept
+                   *
+1행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> select ename, loc from emp, dept;
+
+ENAME      LOC
+---------- --------------------------
+SMITH      NEW YORK
+ALLEN      NEW YORK
+WARD       NEW YORK
+JONES      NEW YORK
+MARTIN     NEW YORK
+BLAKE      NEW YORK
+CLARK      NEW YORK
+SCOTT      NEW YORK
+KING       NEW YORK
+TURNER     NEW YORK
+ADAMS      NEW YORK
+JAMES      NEW YORK
+FORD       NEW YORK
+MILLER     NEW YORK
+SMITH      DALLAS
+ALLEN      DALLAS
+WARD       DALLAS
+JONES      DALLAS
+MARTIN     DALLAS
+BLAKE      DALLAS
+CLARK      DALLAS
+SCOTT      DALLAS
+KING       DALLAS
+TURNER     DALLAS
+ADAMS      DALLAS
+JAMES      DALLAS
+FORD       DALLAS
+MILLER     DALLAS
+SMITH      CHICAGO
+ALLEN      CHICAGO
+WARD       CHICAGO
+JONES      CHICAGO
+MARTIN     CHICAGO
+BLAKE      CHICAGO
+CLARK      CHICAGO
+SCOTT      CHICAGO
+KING       CHICAGO
+TURNER     CHICAGO
+ADAMS      CHICAGO
+JAMES      CHICAGO
+FORD       CHICAGO
+MILLER     CHICAGO
+SMITH      BOSTON
+ALLEN      BOSTON
+WARD       BOSTON
+JONES      BOSTON
+MARTIN     BOSTON
+BLAKE      BOSTON
+CLARK      BOSTON
+SCOTT      BOSTON
+KING       BOSTON
+TURNER     BOSTON
+ADAMS      BOSTON
+JAMES      BOSTON
+FORD       BOSTON
+MILLER     BOSTON
+SMITH      NEW YORK
+ALLEN      NEW YORK
+WARD       NEW YORK
+JONES      NEW YORK
+MARTIN     NEW YORK
+BLAKE      NEW YORK
+CLARK      NEW YORK
+SCOTT      NEW YORK
+KING       NEW YORK
+TURNER     NEW YORK
+ADAMS      NEW YORK
+JAMES      NEW YORK
+FORD       NEW YORK
+MILLER     NEW YORK
+SMITH      DALLAS
+ALLEN      DALLAS
+WARD       DALLAS
+JONES      DALLAS
+MARTIN     DALLAS
+BLAKE      DALLAS
+CLARK      DALLAS
+SCOTT      DALLAS
+KING       DALLAS
+TURNER     DALLAS
+ADAMS      DALLAS
+JAMES      DALLAS
+FORD       DALLAS
+MILLER     DALLAS
+SMITH      CHICAGO
+ALLEN      CHICAGO
+WARD       CHICAGO
+JONES      CHICAGO
+MARTIN     CHICAGO
+BLAKE      CHICAGO
+CLARK      CHICAGO
+SCOTT      CHICAGO
+KING       CHICAGO
+TURNER     CHICAGO
+ADAMS      CHICAGO
+JAMES      CHICAGO
+FORD       CHICAGO
+MILLER     CHICAGO
+SMITH      BOSTON
+ALLEN      BOSTON
+WARD       BOSTON
+JONES      BOSTON
+MARTIN     BOSTON
+BLAKE      BOSTON
+CLARK      BOSTON
+SCOTT      BOSTON
+KING       BOSTON
+TURNER     BOSTON
+ADAMS      BOSTON
+JAMES      BOSTON
+FORD       BOSTON
+MILLER     BOSTON
+SMITH      NEW YORK
+ALLEN      NEW YORK
+WARD       NEW YORK
+JONES      NEW YORK
+MARTIN     NEW YORK
+BLAKE      NEW YORK
+CLARK      NEW YORK
+SCOTT      NEW YORK
+KING       NEW YORK
+TURNER     NEW YORK
+ADAMS      NEW YORK
+JAMES      NEW YORK
+FORD       NEW YORK
+MILLER     NEW YORK
+SMITH      DALLAS
+ALLEN      DALLAS
+WARD       DALLAS
+JONES      DALLAS
+MARTIN     DALLAS
+BLAKE      DALLAS
+CLARK      DALLAS
+SCOTT      DALLAS
+KING       DALLAS
+TURNER     DALLAS
+ADAMS      DALLAS
+JAMES      DALLAS
+FORD       DALLAS
+MILLER     DALLAS
+SMITH      CHICAGO
+ALLEN      CHICAGO
+WARD       CHICAGO
+JONES      CHICAGO
+MARTIN     CHICAGO
+BLAKE      CHICAGO
+CLARK      CHICAGO
+SCOTT      CHICAGO
+KING       CHICAGO
+TURNER     CHICAGO
+ADAMS      CHICAGO
+JAMES      CHICAGO
+FORD       CHICAGO
+MILLER     CHICAGO
+SMITH      BOSTON
+ALLEN      BOSTON
+WARD       BOSTON
+JONES      BOSTON
+MARTIN     BOSTON
+BLAKE      BOSTON
+CLARK      BOSTON
+SCOTT      BOSTON
+KING       BOSTON
+TURNER     BOSTON
+ADAMS      BOSTON
+JAMES      BOSTON
+FORD       BOSTON
+MILLER     BOSTON
+
+168 행이 선택되었습니다.
+
+SQL> select * from loc;
+select * from loc
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+SQL> select e.ename, d.dname
+  2  from emp e, dept d
+  3  where e.deptno = d.deptno;
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+SMITH      RESEARCH
+SMITH      RESEARCH
+ALLEN      SALES
+ALLEN      SALES
+ALLEN      SALES
+WARD       SALES
+WARD       SALES
+WARD       SALES
+JONES      RESEARCH
+JONES      RESEARCH
+JONES      RESEARCH
+MARTIN     SALES
+MARTIN     SALES
+MARTIN     SALES
+BLAKE      SALES
+BLAKE      SALES
+BLAKE      SALES
+CLARK      ACCOUNTING
+CLARK      ACCOUNTING
+CLARK      ACCOUNTING
+SCOTT      RESEARCH
+SCOTT      RESEARCH
+SCOTT      RESEARCH
+KING       ACCOUNTING
+KING       ACCOUNTING
+KING       ACCOUNTING
+TURNER     SALES
+TURNER     SALES
+TURNER     SALES
+ADAMS      RESEARCH
+ADAMS      RESEARCH
+ADAMS      RESEARCH
+JAMES      SALES
+JAMES      SALES
+JAMES      SALES
+FORD       RESEARCH
+FORD       RESEARCH
+FORD       RESEARCH
+MILLER     ACCOUNTING
+MILLER     ACCOUNTING
+MILLER     ACCOUNTING
+
+42 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, d.dname
+  2  from emp e inner join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+SMITH      RESEARCH
+SMITH      RESEARCH
+ALLEN      SALES
+ALLEN      SALES
+ALLEN      SALES
+WARD       SALES
+WARD       SALES
+WARD       SALES
+JONES      RESEARCH
+JONES      RESEARCH
+JONES      RESEARCH
+MARTIN     SALES
+MARTIN     SALES
+MARTIN     SALES
+BLAKE      SALES
+BLAKE      SALES
+BLAKE      SALES
+CLARK      ACCOUNTING
+CLARK      ACCOUNTING
+CLARK      ACCOUNTING
+SCOTT      RESEARCH
+SCOTT      RESEARCH
+SCOTT      RESEARCH
+KING       ACCOUNTING
+KING       ACCOUNTING
+KING       ACCOUNTING
+TURNER     SALES
+TURNER     SALES
+TURNER     SALES
+ADAMS      RESEARCH
+ADAMS      RESEARCH
+ADAMS      RESEARCH
+JAMES      SALES
+JAMES      SALES
+JAMES      SALES
+FORD       RESEARCH
+FORD       RESEARCH
+FORD       RESEARCH
+MILLER     ACCOUNTING
+MILLER     ACCOUNTING
+MILLER     ACCOUNTING
+
+42 행이 선택되었습니다.
+
+SQL> drop dname
+  2  ;
+drop dname
+     *
+1행에 오류:
+ORA-00950: DROP 옵션이 부적합합니다
+
+
+SQL> ALTER TABLE dept SET UNUSED (dept);
+ALTER TABLE dept SET UNUSED (dept)
+                             *
+1행에 오류:
+ORA-00904: "DEPT": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1* ALTER TABLE dept SET UNUSED (dept)
+SQL> 1  select e.ename, d.dname
+SQL> 2  from emp e inner join dept d
+SQL> 3* on e.deptno = d.de
+SP2-0734: "3* on e.de..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+SQL> select e.ename, d.dname
+  2  from emp e inner join dept d
+  3  on e.deptno = d.deptno
+  4  where d.dname = 'RESEARCH';
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+SMITH      RESEARCH
+SMITH      RESEARCH
+JONES      RESEARCH
+JONES      RESEARCH
+JONES      RESEARCH
+SCOTT      RESEARCH
+SCOTT      RESEARCH
+SCOTT      RESEARCH
+ADAMS      RESEARCH
+ADAMS      RESEARCH
+ADAMS      RESEARCH
+FORD       RESEARCH
+FORD       RESEARCH
+FORD       RESEARCH
+
+15 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, d.dname
+  2  from emp e, dept d
+  3  where e.deptno = d.deptno
+  4* and d.dname = 'RESEARCH'
+SQL> /
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+SMITH      RESEARCH
+SMITH      RESEARCH
+JONES      RESEARCH
+JONES      RESEARCH
+JONES      RESEARCH
+SCOTT      RESEARCH
+SCOTT      RESEARCH
+SCOTT      RESEARCH
+ADAMS      RESEARCH
+ADAMS      RESEARCH
+ADAMS      RESEARCH
+FORD       RESEARCH
+FORD       RESEARCH
+FORD       RESEARCH
+
+15 행이 선택되었습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> delete dept
+  2  ;
+
+12 행이 삭제되었습니다.
+
+SQL> select * from dept
+  2  ;
+
+선택된 레코드가 없습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> delete emp
+  2  ;
+
+14 행이 삭제되었습니다.
+
+SQL> select * from emp;
+
+선택된 레코드가 없습니다.
+
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL> delete tab;
+delete tab
+       *
+1행에 오류:
+ORA-01031: 권한이 불충분합니다
+
+
+SQL> delete bonus
+  2  ;
+
+0 행이 삭제되었습니다.
+
+SQL> delete salgrade;
+
+15 행이 삭제되었습니다.
+
+SQL> @demobld.sql
+Building demonstration tables.  Please wait.
+Demonstration table build is complete.
+SQL> seletc * from dept
+SP2-0734: "seletc * f..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+SQL> select * from dept
+  2  ;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> set lines 250
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL> set pages 9999
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select e.ename, d.dname
+  2  from emp e, dept d
+  3  where e.deptno = d.deptno
+  4  and d.dname = 'RESEARCH'
+  5  ;
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+JONES      RESEARCH
+SCOTT      RESEARCH
+ADAMS      RESEARCH
+FORD       RESEARCH
+
+SQL> select e.ename, d.dname
+  2  from emp e inner join dept d
+  3  on e.deptno = d.deptno/
+
+  4  where d.dname = 'RESEARCH';
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+JONES      RESEARCH
+SCOTT      RESEARCH
+ADAMS      RESEARCH
+FORD       RESEARCH
+
+SQL> select e.ename, e.sal, s.grade
+  2  from emp e, salgrade s
+  3  where e.sal between s.losal and s.hisal;
+
+ENAME             SAL      GRADE
+---------- ---------- ----------
+SMITH             800          1
+JAMES             950          1
+ADAMS            1100          1
+WARD             1250          2
+MARTIN           1250          2
+MILLER           1300          2
+TURNER           1500          3
+ALLEN            1600          3
+CLARK            2450          4
+BLAKE            2850          4
+JONES            2975          4
+SCOTT            3000          4
+FORD             3000          4
+KING             5000          5
+
+14 행이 선택되었습니다./
+
+
+SQL> select e.ename, e.sal, s.grade
+  2  from emp e inner join salgrade s
+  3  on e.sal between s.losal and s.hisal;
+
+ENAME             SAL      GRADE
+---------- ---------- ----------
+SMITH             800          1
+JAMES             950          1
+ADAMS            1100          1
+WARD             1250          2
+MARTIN           1250          2
+MILLER           1300          2
+TURNER           1500          3
+ALLEN            1600          3
+CLARK            2450          4
+BLAKE            2850          4
+JONES            2975          4/
+SCOTT            3000          4
+FORD             3000          4
+KING             5000          5
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, e.sal, s.grade
+  2  from emp e join salgrade s
+  3* on e.sal between s.losal and s.hisal
+SQL> /
+
+ENAME             SAL      GRADE
+---------- ---------- ----------
+SMITH             800          1
+JAMES             950          1
+ADAMS            1100          1
+WARD             1250          2
+MARTIN           1250          2
+MILLER           1300          2
+TURNER           1500          3
+ALLEN            1600          3
+CLARK            2450          4
+BLAKE            2850          4
+JONES            2975          4
+SCOTT            3000          4
+FORD             3000          4
+KING             5000          5
+
+14 행이 선택되었습니다.
+
+SQL> select * from dept
+  2  ;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL> select * from salgrade;
+
+     GRADE      LOSAL      HISAL
+---------- ---------- ----------
+         1        700       1200
+         2       1201       1400
+         3       1401       2000
+         4       2001       3000
+         5       3001       9999
+
+SQL> 1  select e.ename, e.sal, s.grade
+SQL>   2  from emp e join salgrade s
+SQL>   3* on e.sal between s.losal and s.hisal
+SP2-0734: "3* on e.sa..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+SQL> select e.ename, e.sal, s.grade
+  2  from emp e inner join salgrade s
+  3  on e.sal between s.losal and s.hisal;
+
+ENAME             SAL      GRADE
+---------- ---------- ----------
+SMITH             800          1
+JAMES             950          1
+ADAMS            1100          1
+WARD             1250          2
+MARTIN           1250          2
+MILLER           1300          2
+TURNER           1500          3
+ALLEN            1600          3
+CLARK            2450          4
+BLAKE            2850          4
+JONES            2975          4
+SCOTT            3000          4
+FORD             3000          4
+KING             5000          5
+
+14 행이 선택되었습니다.
+
+SQL> select * from bonus;
+
+선택된 레코드가 없습니다.
+
+SQL> select empno, ename, sdal, comm, deptno
+  2  from emp;
+select empno, ename, sdal, comm, deptno
+                     *
+1행에 오류:
+ORA-00904: "SDAL": 부적합한 식별자
+
+
+SQL> select empno, ename, sal, comm, deptno
+  2  from emp;
+
+     EMPNO ENAME             SAL       COMM     DEPTNO
+---------- ---------- ---------- ---------- ----------
+      7369 SMITH             800                    20
+      7499 ALLEN            1600        300         30
+      7521 WARD             1250        500         30
+      7566 JONES            2975                    20
+      7654 MARTIN           1250       1400         30
+      7698 BLAKE            2850                    30
+      7782 CLARK            2450                    10
+      7788 SCOTT            3000                    20
+      7839 KING             5000                    10
+      7844 TURNER           1500                    30
+      7876 ADAMS            1100                    20
+      7900 JAMES             950                    30
+      7902 FORD             3000                    20
+      7934 MILLER           1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> select e.ename, d.name
+  2  from emp e join dept d
+  3  on e.deptno = d.deptno;
+select e.ename, d.name
+                *
+1행에 오류:
+ORA-00904: "D"."NAME": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, d.name
+  2  from emp e join dept d
+  3* on e.deptno = d.deptno;
+SQL> /
+on e.deptno = d.deptno;
+                      *
+3행에 오류:
+ORA-00933: SQL 명령어가 올바르게 종료되지 않았습니다
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, d.name
+  2  from emp e join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+select e.ename, d.name
+                *
+1행에 오류:
+ORA-00904: "D"."NAME": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, d.dname
+  2  from emp e join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+ALLEN      SALES
+WARD       SALES
+JONES      RESEARCH
+MARTIN     SALES
+BLAKE      SALES
+CLARK      ACCOUNTING
+SCOTT      RESEARCH
+KING       ACCOUNTING
+TURNER     SALES
+ADAMS      RESEARCH
+JAMES      SALES
+FORD       RESEARCH
+MILLER     ACCOUNTING
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, d.dname
+  2  from emp e right outer join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+ALLEN      SALES
+WARD       SALES
+JONES      RESEARCH
+MARTIN     SALES
+BLAKE      SALES
+CLARK      ACCOUNTING
+SCOTT      RESEARCH
+KING       ACCOUNTING
+TURNER     SALES
+ADAMS      RESEARCH
+JAMES      SALES
+FORD       RESEARCH
+MILLER     ACCOUNTING
+           OPERATIONS
+
+15 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select nvl(e.ename, 'Empty'), d.dname
+  2  from emp e right outer join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+NVL(E.ENAME,'EMPTY') DNAME
+-------------------- ----------------------------
+SMITH                RESEARCH
+ALLEN                SALES
+WARD                 SALES
+JONES                RESEARCH
+MARTIN               SALES
+BLAKE                SALES
+CLARK                ACCOUNTING
+SCOTT                RESEARCH
+KING                 ACCOUNTING
+TURNER               SALES
+ADAMS                RESEARCH
+JAMES                SALES
+FORD                 RESEARCH
+MILLER               ACCOUNTING
+Empty                OPERATIONS
+
+15 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select nvl(e.ename, 'Empty'), d.dname
+  2  from emp e left outer join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+NVL(E.ENAME,'EMPTY') DNAME
+-------------------- ----------------------------
+CLARK                ACCOUNTING
+KING                 ACCOUNTING
+MILLER               ACCOUNTING
+SMITH                RESEARCH
+JONES                RESEARCH
+SCOTT                RESEARCH
+ADAMS                RESEARCH
+FORD                 RESEARCH
+ALLEN                SALES
+WARD                 SALES
+MARTIN               SALES
+BLAKE                SALES
+TURNER               SALES
+JAMES                SALES
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, d.dname
+  2  from emp e left outer join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+ENAME      DNAME
+---------- ----------------------------
+CLARK      ACCOUNTING
+KING       ACCOUNTING
+MILLER     ACCOUNTING
+SMITH      RESEARCH
+JONES      RESEARCH
+SCOTT      RESEARCH
+ADAMS      RESEARCH
+FORD       RESEARCH
+ALLEN      SALES
+WARD       SALES
+MARTIN     SALES
+BLAKE      SALES
+TURNER     SALES
+JAMES      SALES
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, d.dname
+  2  from emp e left outer join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+    DEPTNO DNAME
+---------- ----------------------------
+        10 ACCOUNTING
+        10 ACCOUNTING
+        10 ACCOUNTING
+        20 RESEARCH
+        20 RESEARCH
+        20 RESEARCH
+        20 RESEARCH
+        20 RESEARCH
+        30 SALES
+        30 SALES
+        30 SALES
+        30 SALES
+        30 SALES
+        30 SALES
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, d.ddeptno
+  2  from emp e left outer join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+select e.deptno, d.ddeptno
+                 *
+1행에 오류:
+ORA-00904: "D"."DDEPTNO": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, d.deptno
+  2  from emp e left outer join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+    DEPTNO     DEPTNO
+---------- ----------
+        10         10
+        10         10
+        10         10
+        20         20
+        20         20
+        20         20
+        20         20
+        20         20
+        30         30
+        30         30
+        30         30
+        30         30
+        30         30
+        30         30
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, d.dname
+  2  from emp e right outer join dept d
+  3* on e.deptno = d.deptno
+SQL> /
+
+    DEPTNO DNAME
+---------- ----------------------------
+        20 RESEARCH
+        30 SALES
+        30 SALES
+        20 RESEARCH
+        30 SALES
+        30 SALES
+        10 ACCOUNTING
+        20 RESEARCH
+        10 ACCOUNTING
+        30 SALES
+        20 RESEARCH
+        30 SALES
+        20 RESEARCH
+        10 ACCOUNTING
+           OPERATIONS
+
+15 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, d.dname
+  2  from emp e right outer join dept d
+  3  on e.deptno = d.deptno
+  4* order by deptno
+SQL> /
+
+    DEPTNO DNAME
+---------- ----------------------------
+        10 ACCOUNTING
+        10 ACCOUNTING
+        10 ACCOUNTING
+        20 RESEARCH
+        20 RESEARCH
+        20 RESEARCH
+        20 RESEARCH
+        20 RESEARCH
+        30 SALES
+        30 SALES
+        30 SALES
+        30 SALES
+        30 SALES
+        30 SALES
+           OPERATIONS
+
+15 행이 선택되었습니다.
+
+SQL> select * from dept
+  2  ;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1* select * from dept
+  2  /
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL>  select e.ename, d.dname
+  2   from emp e join dept d
+  3   on e.deptno = d.deptno
+  4  /
+
+ENAME      DNAME
+---------- ----------------------------
+SMITH      RESEARCH
+ALLEN      SALES
+WARD       SALES
+JONES      RESEARCH
+MARTIN     SALES
+BLAKE      SALES
+CLARK      ACCOUNTING
+SCOTT      RESEARCH
+KING       ACCOUNTING
+TURNER     SALES
+ADAMS      RESEARCH
+JAMES      SALES
+FORD       RESEARCH
+MILLER     ACCOUNTING
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1   select nvl(e.ename, 'Empty'), d.dname
+  2   from emp e, dept d
+  3*  where e.deptno (+) = d.deptno
+SQL> /
+
+NVL(E.ENAME,'EMPTY') DNAME
+-------------------- ----------------------------
+SMITH                RESEARCH
+ALLEN                SALES
+WARD                 SALES
+JONES                RESEARCH
+MARTIN               SALES
+BLAKE                SALES
+CLARK                ACCOUNTING
+SCOTT                RESEARCH
+KING                 ACCOUNTING
+TURNER               SALES
+ADAMS                RESEARCH
+JAMES                SALES
+FORD                 RESEARCH
+MILLER               ACCOUNTING
+Empty                OPERATIONS
+
+15 행이 선택되었습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select e.empno, e.ename, d.dname, d.deptno
+  2  from emp e join dept d
+  3  on e.empno, e.ename = d.dname, d.deptno;
+on e.empno, e.ename = d.dname, d.deptno
+          *
+3행에 오류:
+ORA-00920: 관계 연산자가 부적합합니다
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.empno, e.ename, d.dname, d.deptno
+  2  from emp e join dept d
+  3* on e.empno = d.dname
+SQL> /
+on e.empno = d.dname
+             *
+3행에 오류:
+ORA-01722: 수치가 부적합합니다
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.empno, e.ename, d.dname, d.deptno
+  2  from emp e join dept d
+  3* on e.empno = d.deptno
+SQL> /
+
+선택된 레코드가 없습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.1, e.e2, d.d1, d.d2
+  2  from emp e join dept d
+  3* on e.empno = d.deptno
+SQL> /
+select e.1, e.e2, d.d1, d.d2
+        *
+1행에 오류:
+ORA-00923: FROM 키워드가 필요한 위치에 없습니다.
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, e.empno, d.dname, d.ddeptno
+  2  from emp e join dept d
+  3* on e.empno = d.deptno
+SQL> /
+select e.ename, e.empno, d.dname, d.ddeptno
+                                  *
+1행에 오류:
+ORA-00904: "D"."DDEPTNO": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.ename, e.empno, d.dname, d.deptno
+  2  from emp e join dept d
+  3* on e.empno = d.deptno
+SQL> /
+
+선택된 레코드가 없습니다.
+
+SQL> select * from emp e1, emp e2
+  2  where e1.empno = e2.mgr
+  3  ;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO      EMPNO ENAME      JOB
+                        MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ---------- ---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20       7369 SMITH      CLERK
+                       7902 80/12/17        800                    20
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30       7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30       7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7839 KING       PRESIDENT                  81/11/17       5000                    10       7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30       7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7839 KING       PRESIDENT                  81/11/17       5000                    10       7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7839 KING       PRESIDENT                  81/11/17       5000                    10       7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20       7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30       7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20       7876 ADAMS      CLERK
+                       7788 83/01/12       1100                    20
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30       7900 JAMES      CLERK
+                       7698 81/12/03        950                    30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20       7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10       7934 MILLER     CLERK
+                       7782 82/01/23       1300                    10
+
+13 행이 선택되었습니다.
+
+SQL> slect from emp e1, e2, d1, d2
+SP2-0734: "slect from..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+SQL> select from emp e1, e2, d1, d2
+  2  e join dept d
+  3  on e.deptno = d.deptno
+  4  ;
+select from emp e1, e2, d1, d2
+       *
+1행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> select e2.empno, e2.ename, e1.empno, e1.ename
+  2  from emp el right join emp e2
+  3  on e1.empno = e2.mgr
+  4  ;
+on e1.empno = e2.mgr
+   *
+3행에 오류:
+ORA-00904: "E1"."EMPNO": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e2.empno, e2.ename, e1.empno, e1.ename
+  2  from emp el right join emp e2
+  3* on e1.empno = e2.mgr
+  4  /
+on e1.empno = e2.mgr
+   *
+3행에 오류:
+ORA-00904: "E1"."EMPNO": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e2.empno, e2.ename, e1.empno, e1.ename
+  2  from emp e1 right join emp e2
+  3* on e1.empno = e2.mgr
+SQL> /
+
+     EMPNO ENAME           EMPNO ENAME
+---------- ---------- ---------- ----------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING
+
+14 행이 선택되었습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select e2.empno, e2.ename, e1.empno, e1.ename
+  2  from emp e1 join emp e2
+  3  on e1.empno = e2.mgr
+  4  /
+
+     EMPNO ENAME           EMPNO ENAME
+---------- ---------- ---------- ----------
+      7369 SMITH            7902 FORD
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7566 JONES            7839 KING
+      7654 MARTIN           7698 BLAKE
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7788 SCOTT            7566 JONES
+      7844 TURNER           7698 BLAKE
+      7876 ADAMS            7788 SCOTT
+      7900 JAMES            7698 BLAKE
+      7902 FORD             7566 JONES
+      7934 MILLER           7782 CLARK
+
+13 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e2.empno, e2.ename, e1.empno, e1.ename
+  2  from emp e1 join emp e2
+  3* on e1.empno = e2.mgr
+SQL> /
+
+     EMPNO ENAME           EMPNO ENAME
+---------- ---------- ---------- ----------
+      7369 SMITH            7902 FORD
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7566 JONES            7839 KING
+      7654 MARTIN           7698 BLAKE
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7788 SCOTT            7566 JONES
+      7844 TURNER           7698 BLAKE
+      7876 ADAMS            7788 SCOTT
+      7900 JAMES            7698 BLAKE
+      7902 FORD             7566 JONES
+      7934 MILLER           7782 CLARK
+
+13 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e2.empno, e2.ename, e1.empno, e1.ename
+  2  from emp e1 join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+
+     EMPNO ENAME           EMPNO ENAME
+---------- ---------- ---------- ----------
+      7566 JONES            7788 SCOTT
+      7566 JONES            7902 FORD
+      7698 BLAKE            7499 ALLEN
+      7698 BLAKE            7521 WARD
+      7698 BLAKE            7654 MARTIN
+      7698 BLAKE            7844 TURNER
+      7698 BLAKE            7900 JAMES
+      7782 CLARK            7934 MILLER
+      7788 SCOTT            7876 ADAMS
+      7839 KING             7566 JONES
+      7839 KING             7698 BLAKE
+      7839 KING             7782 CLARK
+      7902 FORD             7369 SMITH
+
+13 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, e2.ename
+  2  from emp e1 join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+
+     EMPNO ENAME           EMPNO ENAME
+---------- ---------- ---------- ----------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+
+13 행이 선택되었습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST               7566 82/12/09       3000                    20
+      7839 KING       PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER     SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS      CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES      CLERK                 7698 81/12/03        950                    30
+      7902 FORD       ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER     CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1* select * from emp
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, e2.ename
+  2  from emp e1 right join emp e2
+  3* on e1.mgr = e2.empnoselect * from emp
+SQL> /
+on e1.mgr = e2.empnoselect * from emp
+                             *
+3행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, e2.ename
+  2  from emp e1 right join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+
+     EMPNO ENAME           EMPNO ENAME
+---------- ---------- ---------- ----------
+      7369 SMITH            7902 FORD
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7566 JONES            7839 KING
+      7654 MARTIN           7698 BLAKE
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7788 SCOTT            7566 JONES
+      7844 TURNER           7698 BLAKE
+      7876 ADAMS            7788 SCOTT
+      7900 JAMES            7698 BLAKE
+      7902 FORD             7566 JONES
+      7934 MILLER           7782 CLARK
+                            7876 ADAMS
+                            7521 WARD
+                            7499 ALLEN
+                            7900 JAMES
+                            7369 SMITH
+                            7934 MILLER
+                            7654 MARTIN
+                            7844 TURNER
+
+21 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, e2.ename
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> .
+SQL> /
+
+     EMPNO ENAME           EMPNO ENAME
+---------- ---------- ---------- ----------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, (e1.ename, 'No Manager'), e2.empno, e2.ename
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+select e1.empno, (e1.ename, 'No Manager'), e2.empno, e2.ename
+                          *
+1행에 오류:
+ORA-00907: 누락된 우괄호
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, nvl(e1.ename, 'No Manager'), e2.empno, e2.ename
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, nvl(e1.ename, 'No Manager'), e2.empno, e2.ename
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+
+     EMPNO NVL(E1.ENAME,'NOMANA      EMPNO ENAME
+---------- -------------------- ---------- ----------
+      7788 SCOTT                      7566 JONES
+      7902 FORD                       7566 JONES
+      7499 ALLEN                      7698 BLAKE
+      7521 WARD                       7698 BLAKE
+      7654 MARTIN                     7698 BLAKE
+      7844 TURNER                     7698 BLAKE
+      7900 JAMES                      7698 BLAKE
+      7934 MILLER                     7782 CLARK
+      7876 ADAMS                      7788 SCOTT
+      7566 JONES                      7839 KING
+      7698 BLAKE                      7839 KING
+      7782 CLARK                      7839 KING
+      7369 SMITH                      7902 FORD
+      7839 KING
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, (e1.ename, 'No Manager'), e2.empno, e2.ename
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+select e1.empno, (e1.ename, 'No Manager'), e2.empno, e2.ename
+                          *
+1행에 오류:
+ORA-00907: 누락된 우괄호
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, (e2.ename, 'No Manager'),
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+select e1.empno, e1.ename, e2.empno, (e2.ename, 'No Manager'),
+                                              *
+1행에 오류:
+ORA-00907: 누락된 우괄호
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, nvl(e2.ename, 'No Manager'),
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+from emp e1 left join emp e2
+*
+2행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, nvl(e2.ename, 'No Manager')
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+
+     EMPNO ENAME           EMPNO NVL(E2.ENAME,'NOMANA
+---------- ---------- ---------- --------------------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING                  No Manager
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, nvl(e2.empno, 'xxxx') nvl(e2.ename, 'No Manager')
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+select e1.empno, e1.ename, nvl(e2.empno, 'xxxx') nvl(e2.ename, 'No Manager')
+                                                    *
+1행에 오류:
+ORA-00923: FROM 키워드가 필요한 위치에 없습니다.
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, nvl(e2.empno, 'xxxx', e2.ename, 'No Manager')
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+select e1.empno, e1.ename, nvl(e2.empno, 'xxxx', e2.ename, 'No Manager')
+                           *
+1행에 오류:
+ORA-00909: 인수의 개수가 부적합합니다
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, nvl(e2.empno, '0000', e2.ename, 'No Manager')
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+select e1.empno, e1.ename, nvl(e2.empno, '0000', e2.ename, 'No Manager')
+                           *
+1행에 오류:
+ORA-00909: 인수의 개수가 부적합합니다
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno nvl(e2.ename, 'No Manager')
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+select e1.empno, e1.ename, e2.empno nvl(e2.ename, 'No Manager')
+                                       *
+1행에 오류:
+ORA-00923: FROM 키워드가 필요한 위치에 없습니다.
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, nvl(e2.ename, 'No Manager')
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+
+     EMPNO ENAME           EMPNO NVL(E2.ENAME,'NOMANA
+---------- ---------- ---------- --------------------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING                  No Manager
+
+14 행이 선택되었습니다.
+
+SQL> set lines 250
+SQL> /
+
+     EMPNO ENAME           EMPNO NVL(E2.ENAME,'NOMANA
+---------- ---------- ---------- --------------------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING                  No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col nvl for a 20
+SP2-0246: FORMAT 문자열 "a"이 부적합합니다.
+SQL> /
+
+     EMPNO ENAME           EMPNO NVL(E2.ENAME,'NOMANA
+---------- ---------- ---------- --------------------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING                  No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col nvl for a 50
+SP2-0246: FORMAT 문자열 "a"이 부적합합니다.
+SQL> /
+
+     EMPNO ENAME           EMPNO NVL(E2.ENAME,'NOMANA
+---------- ---------- ---------- --------------------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING                  No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col nvl for a50
+SQL> /
+
+     EMPNO ENAME           EMPNO NVL(E2.ENAME,'NOMANA
+---------- ---------- ---------- --------------------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING                  No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col nvl for a100
+SQL> /
+
+     EMPNO ENAME           EMPNO NVL(E2.ENAME,'NOMANA
+---------- ---------- ---------- --------------------
+      7788 SCOTT            7566 JONES
+      7902 FORD             7566 JONES
+      7499 ALLEN            7698 BLAKE
+      7521 WARD             7698 BLAKE
+      7654 MARTIN           7698 BLAKE
+      7844 TURNER           7698 BLAKE
+      7900 JAMES            7698 BLAKE
+      7934 MILLER           7782 CLARK
+      7876 ADAMS            7788 SCOTT
+      7566 JONES            7839 KING
+      7698 BLAKE            7839 KING
+      7782 CLARK            7839 KING
+      7369 SMITH            7902 FORD
+      7839 KING                  No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col ename for a50
+SQL> /
+
+     EMPNO ENAME                                                   EMPNO NVL(E2.ENAME,'NOMANA
+---------- -------------------------------------------------- ---------- --------------------
+      7788 SCOTT                                                    7566 JONES
+      7902 FORD                                                     7566 JONES
+      7499 ALLEN                                                    7698 BLAKE
+      7521 WARD                                                     7698 BLAKE
+      7654 MARTIN                                                   7698 BLAKE
+      7844 TURNER                                                   7698 BLAKE
+      7900 JAMES                                                    7698 BLAKE
+      7934 MILLER                                                   7782 CLARK
+      7876 ADAMS                                                    7788 SCOTT
+      7566 JONES                                                    7839 KING
+      7698 BLAKE                                                    7839 KING
+      7782 CLARK                                                    7839 KING
+      7369 SMITH                                                    7902 FORD
+      7839 KING                                                          No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col ename for a15
+SQL> /
+
+     EMPNO ENAME                EMPNO NVL(E2.ENAME,'NOMANA
+---------- --------------- ---------- --------------------
+      7788 SCOTT                 7566 JONES
+      7902 FORD                  7566 JONES
+      7499 ALLEN                 7698 BLAKE
+      7521 WARD                  7698 BLAKE
+      7654 MARTIN                7698 BLAKE
+      7844 TURNER                7698 BLAKE
+      7900 JAMES                 7698 BLAKE
+      7934 MILLER                7782 CLARK
+      7876 ADAMS                 7788 SCOTT
+      7566 JONES                 7839 KING
+      7698 BLAKE                 7839 KING
+      7782 CLARK                 7839 KING
+      7369 SMITH                 7902 FORD
+      7839 KING                       No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col nvl(e2.ename, 'no manager') for a 50
+SP2-0158: 알 수 없는 COLUMN 옵션 "'no"
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, nvl(e2.ename, 'No Manager')
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL>
+SQL> /
+
+     EMPNO ENAME                EMPNO NVL(E2.ENAME,'NOMANA
+---------- --------------- ---------- --------------------
+      7788 SCOTT                 7566 JONES
+      7902 FORD                  7566 JONES
+      7499 ALLEN                 7698 BLAKE
+      7521 WARD                  7698 BLAKE
+      7654 MARTIN                7698 BLAKE
+      7844 TURNER                7698 BLAKE
+      7900 JAMES                 7698 BLAKE
+      7934 MILLER                7782 CLARK
+      7876 ADAMS                 7788 SCOTT
+      7566 JONES                 7839 KING
+      7698 BLAKE                 7839 KING
+      7782 CLARK                 7839 KING
+      7369 SMITH                 7902 FORD
+      7839 KING                       No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col nvl(e2.ename, 'No Manager') for a50
+SP2-0158: 알 수 없는 COLUMN 옵션 "'No"
+SQL> /
+
+     EMPNO ENAME                EMPNO NVL(E2.ENAME,'NOMANA
+---------- --------------- ---------- --------------------
+      7788 SCOTT                 7566 JONES
+      7902 FORD                  7566 JONES
+      7499 ALLEN                 7698 BLAKE
+      7521 WARD                  7698 BLAKE
+      7654 MARTIN                7698 BLAKE
+      7844 TURNER                7698 BLAKE
+      7900 JAMES                 7698 BLAKE
+      7934 MILLER                7782 CLARK
+      7876 ADAMS                 7788 SCOTT
+      7566 JONES                 7839 KING
+      7698 BLAKE                 7839 KING
+      7782 CLARK                 7839 KING
+      7369 SMITH                 7902 FORD
+      7839 KING                       No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col "nvl(e2.ename, 'No Manager')" for a50
+SQL> /
+
+     EMPNO ENAME                EMPNO NVL(E2.ENAME,'NOMANA
+---------- --------------- ---------- --------------------
+      7788 SCOTT                 7566 JONES
+      7902 FORD                  7566 JONES
+      7499 ALLEN                 7698 BLAKE
+      7521 WARD                  7698 BLAKE
+      7654 MARTIN                7698 BLAKE
+      7844 TURNER                7698 BLAKE
+      7900 JAMES                 7698 BLAKE
+      7934 MILLER                7782 CLARK
+      7876 ADAMS                 7788 SCOTT
+      7566 JONES                 7839 KING
+      7698 BLAKE                 7839 KING
+      7782 CLARK                 7839 KING
+      7369 SMITH                 7902 FORD
+      7839 KING                       No Manager
+
+14 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e1.empno, e1.ename, e2.empno, nvl(e2.ename, 'No Manager') "Manager Name"
+  2  from emp e1 left join emp e2
+  3* on e1.mgr = e2.empno
+SQL> /
+
+     EMPNO ENAME                EMPNO Manager Name
+---------- --------------- ---------- --------------------
+      7788 SCOTT                 7566 JONES
+      7902 FORD                  7566 JONES
+      7499 ALLEN                 7698 BLAKE
+      7521 WARD                  7698 BLAKE
+      7654 MARTIN                7698 BLAKE
+      7844 TURNER                7698 BLAKE
+      7900 JAMES                 7698 BLAKE
+      7934 MILLER                7782 CLARK
+      7876 ADAMS                 7788 SCOTT
+      7566 JONES                 7839 KING
+      7698 BLAKE                 7839 KING
+      7782 CLARK                 7839 KING
+      7369 SMITH                 7902 FORD
+      7839 KING                       No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col Manager Name for a30
+SP2-0158: 알 수 없는 COLUMN 옵션 "Name"
+SQL> col "Manager Name" for a30
+SQL> /
+
+     EMPNO ENAME                EMPNO Manager Name
+---------- --------------- ---------- ------------------------------
+      7788 SCOTT                 7566 JONES
+      7902 FORD                  7566 JONES
+      7499 ALLEN                 7698 BLAKE
+      7521 WARD                  7698 BLAKE
+      7654 MARTIN                7698 BLAKE
+      7844 TURNER                7698 BLAKE
+      7900 JAMES                 7698 BLAKE
+      7934 MILLER                7782 CLARK
+      7876 ADAMS                 7788 SCOTT
+      7566 JONES                 7839 KING
+      7698 BLAKE                 7839 KING
+      7782 CLARK                 7839 KING
+      7369 SMITH                 7902 FORD
+      7839 KING                       No Manager
+
+14 행이 선택되었습니다.
+
+SQL> col "Manager Name" for a15
+SQL> /
+
+     EMPNO ENAME                EMPNO Manager Name
+---------- --------------- ---------- ---------------
+      7788 SCOTT                 7566 JONES
+      7902 FORD                  7566 JONES
+      7499 ALLEN                 7698 BLAKE
+      7521 WARD                  7698 BLAKE
+      7654 MARTIN                7698 BLAKE
+      7844 TURNER                7698 BLAKE
+      7900 JAMES                 7698 BLAKE
+      7934 MILLER                7782 CLARK
+      7876 ADAMS                 7788 SCOTT
+      7566 JONES                 7839 KING
+      7698 BLAKE                 7839 KING
+      7782 CLARK                 7839 KING
+      7369 SMITH                 7902 FORD
+      7839 KING                       No Manager
+
+14 행이 선택되었습니다.
+
+SQL> select deptno, dname, avg(sal), dept
+  2  from emp join dept
+  3  on
+  4
+SQL> ;
+  1  select deptno, dname, avg(sal), dept
+  2  from emp join dept
+  3* on
+SQL> /
+on
+ *
+3행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> select d1.deptno, d2.dname, avg(sal)
+  2  from emp d1 join dept d2
+  3  on d1.deptno = d2.dname
+  4  /
+select d1.deptno, d2.dname, avg(sal)
+       *
+1행에 오류:
+ORA-00937: 단일 그룹의 그룹 함수가 아닙니다
+
+
+SQL> selet * from dept
+SP2-0734: "selet * fr..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+SQL> select * from dept
+  2  ;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> select * from emp;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH           CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN           SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD            SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES           MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN          SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE           MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT           ANALYST               7566 82/12/09       3000                    20
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER          SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS           CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES           CLERK                 7698 81/12/03        950                    30
+      7902 FORD            ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select d1.deptno, d1.dname, avg(e.sal)
+  2  '
+  3  ;
+ERROR:
+ORA-01756: 단일 인용부를 지정해 주십시오
+
+
+SQL> select e.deptno, d1.dname, avg(e.sal)
+  2  from emp join e.
+  3  on e.depthno = d.deptno
+  4  group by e.deptno, d.dname;
+on e.depthno = d.deptno
+*
+3행에 오류:
+ORA-00903: 테이블명이 부적합합니다
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, d.dname, avg(e.sal)
+  2  from emp join dept d
+  3  on e.depthno = d.deptno
+  4* group by e.deptno, d.dname
+SQL> /
+on e.depthno = d.deptno
+   *
+3행에 오류:
+ORA-00904: "E"."DEPTHNO": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, d.dname, avg(e.sal)
+  2  from emp e join dept d
+  3  on e.depthno = d.deptno
+  4* group by e.deptno, d.dname
+SQL> /
+on e.depthno = d.deptno
+   *
+3행에 오류:
+ORA-00904: "E"."DEPTHNO": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, d.dname, avg(e.sal)
+  2  from emp e join dept d
+  3  on e.deptno = d.deptno
+  4* group by e.deptno, d.dname
+SQL> /
+
+    DEPTNO DNAME                        AVG(E.SAL)
+---------- ---------------------------- ----------
+        10 ACCOUNTING                   2916.66667
+        20 RESEARCH                           2175
+        30 SALES                        1566.66667
+
+SQL> select e.deptno, d.dname, avg(e.sal)
+  2  from emp e join dept d
+  3  on e.deptno = d.deptno
+  4  group by e.deptno, d.dname
+  5  /
+
+    DEPTNO DNAME                        AVG(E.SAL)
+---------- ---------------------------- ----------
+        10 ACCOUNTING                   2916.66667
+        20 RESEARCH                           2175
+        30 SALES                        1566.66667
+
+SQL> select * from emp;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH           CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN           SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD            SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES           MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN          SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE           MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT           ANALYST               7566 82/12/09       3000                    20
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER          SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS           CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES           CLERK                 7698 81/12/03        950                    30
+      7902 FORD            ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select * from dept
+  2  ;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> select e.deptno, d.dname, avg(e.comm)
+  2  from emp e join dept d
+  3  on e.deptno = d.deptno
+  4  group by e.deptno, d.dname
+  5  /
+
+    DEPTNO DNAME                        AVG(E.COMM)
+---------- ---------------------------- -----------
+        10 ACCOUNTING
+        20 RESEARCH
+        30 SALES                         733.333333
+
+SQL> select avg(e.com)
+  2  from emp
+  3  ;
+select avg(e.com)
+           *
+1행에 오류:
+ORA-00904: "E"."COM": 부적합한 식별자
+
+
+SQL> select avg(e.comm)
+  2  from emp;
+select avg(e.comm)
+           *
+1행에 오류:
+ORA-00904: "E"."COMM": 부적합한 식별자
+
+
+SQL> select avg(comm)
+  2  from emp;
+
+ AVG(COMM)
+----------
+733.333333
+
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL> select * from salgrade;
+
+     GRADE      LOSAL      HISAL
+---------- ---------- ----------
+         1        700       1200
+         2       1201       1400
+         3       1401       2000
+         4       2001       3000
+         5       3001       9999
+
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL>
+SQL> @sales.sql
+
+테이블이 생성되었습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+
+1 개의 행이 만들어졌습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH           CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN           SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD            SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES           MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN          SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE           MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT           ANALYST               7566 82/12/09       3000                    20
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER          SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS           CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES           CLERK                 7698 81/12/03        950                    30
+      7902 FORD            ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALESDATA
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL> select * from sales
+  2  ;
+select * from sales
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+SQL> select * from dual;
+
+DU
+--
+X
+
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALESDATA
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL> select * from salesdata
+  2  ;
+
+LOC                          YR        MON      SALES
+-------------------- ---------- ---------- ----------
+서울                       2000          1          5
+서울                       2000          2          6
+서울                       2000          3         10
+서울                       2000          4          8
+서울                       2000          5          9
+서울                       2000          6         10
+서울                       2000          7          3
+서울                       2000          8          4
+서울                       2000          9          9
+서울                       2000         10         10
+서울                       2000         11         12
+서울                       2000         12         14
+서울                       2001          1         10
+서울                       2001          2         12
+서울                       2001          3         17
+서울                       2001          4         20
+서울                       2001          5         23
+서울                       2001          6         14
+서울                       2001          7         17
+서울                       2001          8          9
+서울                       2001          9         21
+서울                       2001         10         19
+서울                       2001         11         13
+서울                       2001         12         25
+서울                       2002          1         25
+서울                       2002          2         21
+서울                       2002          3         20
+서울                       2002          4         28
+서울                       2002          5         31
+서울                       2002          6         26
+서울                       2002          7         22
+서울                       2002          8         19
+서울                       2002          9         31
+서울                       2002         10         27
+서울                       2002         11         20
+서울                       2002         12         30
+부산                       2000          1          5
+부산                       2000          2          6
+부산                       2000          3         10
+부산                       2000          4          8
+부산                       2000          5          9
+부산                       2000          6         10
+부산                       2000          7          3
+부산                       2000          8          4
+부산                       2000          9          9
+부산                       2000         10         10
+부산                       2000         11         12
+부산                       2000         12         14
+부산                       2001          1          8
+부산                       2001          2         12
+부산                       2001          3         11
+부산                       2001          4         14
+부산                       2001          5         19
+부산                       2001          6         14
+부산                       2001          7         12
+부산                       2001          8          9
+부산                       2001          9         14
+부산                       2001         10         12
+부산                       2001         11         13
+부산                       2001         12         12
+부산                       2002          1         10
+부산                       2002          2         12
+부산                       2002          3         11
+부산                       2002          4         14
+부산                       2002          5         19
+부산                       2002          6         14
+부산                       2002          7         12
+부산                       2002          8          7
+부산                       2002          9         16
+부산                       2002         10         12
+부산                       2002         11         13
+부산                       2002         12         10
+
+72 행이 선택되었습니다.
+
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+BONUS
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALESDATA
+TABLE
+
+SALGRADE
+TABLE
+
+
+SQL> select * from bonus;
+
+선택된 레코드가 없습니다.
+
+SQL> select * from dept
+  2  ;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> select * salgrade;
+select * salgrade
+         *
+1행에 오류:
+ORA-00923: FROM 키워드가 필요한 위치에 없습니다.
+
+
+SQL> select * from salgrade;
+
+     GRADE      LOSAL      HISAL
+---------- ---------- ----------
+         1        700       1200
+         2       1201       1400
+         3       1401       2000
+         4       2001       3000
+         5       3001       9999
+
+SQL> select * from salesdata
+  2  ;
+
+LOC                          YR        MON      SALES
+-------------------- ---------- ---------- ----------
+서울                       2000          1          5
+서울                       2000          2          6
+서울                       2000          3         10
+서울                       2000          4          8
+서울                       2000          5          9
+서울                       2000          6         10
+서울                       2000          7          3
+서울                       2000          8          4
+서울                       2000          9          9
+서울                       2000         10         10
+서울                       2000         11         12
+서울                       2000         12         14
+서울                       2001          1         10
+서울                       2001          2         12
+서울                       2001          3         17
+서울                       2001          4         20
+서울                       2001          5         23
+서울                       2001          6         14
+서울                       2001          7         17
+서울                       2001          8          9
+서울                       2001          9         21
+서울                       2001         10         19
+서울                       2001         11         13
+서울                       2001         12         25
+서울                       2002          1         25
+서울                       2002          2         21
+서울                       2002          3         20
+서울                       2002          4         28
+서울                       2002          5         31
+서울                       2002          6         26
+서울                       2002          7         22
+서울                       2002          8         19
+서울                       2002          9         31
+서울                       2002         10         27
+서울                       2002         11         20
+서울                       2002         12         30
+부산                       2000          1          5
+부산                       2000          2          6
+부산                       2000          3         10
+부산                       2000          4          8
+부산                       2000          5          9
+부산                       2000          6         10
+부산                       2000          7          3
+부산                       2000          8          4
+부산                       2000          9          9
+부산                       2000         10         10
+부산                       2000         11         12
+부산                       2000         12         14
+부산                       2001          1          8
+부산                       2001          2         12
+부산                       2001          3         11
+부산                       2001          4         14
+부산                       2001          5         19
+부산                       2001          6         14
+부산                       2001          7         12
+부산                       2001          8          9
+부산                       2001          9         14
+부산                       2001         10         12
+부산                       2001         11         13
+부산                       2001         12         12
+부산                       2002          1         10
+부산                       2002          2         12
+부산                       2002          3         11
+부산                       2002          4         14
+부산                       2002          5         19
+부산                       2002          6         14
+부산                       2002          7         12
+부산                       2002          8          7
+부산                       2002          9         16
+부산                       2002         10         12
+부산                       2002         11         13
+부산                       2002         12         10
+
+72 행이 선택되었습니다.
+
+SQL> select loc, yr, sum(sales)
+  2  from salesdata
+  3  group by rollup(loc, yr);
+
+LOC                          YR SUM(SALES)
+-------------------- ---------- ----------
+부산                       2000        100
+부산                       2001        150
+부산                       2002        150
+부산                                   400
+서울                       2000        100
+서울                       2001        200
+서울                       2002        300
+서울                                   600
+                                      1000
+
+9 행이 선택되었습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select loc, yr, sum(sales)
+  2  from salesdata
+  3* group by cube(loc, yr)
+SQL> /
+
+LOC                          YR SUM(SALES)
+-------------------- ---------- ----------
+                                      1000
+                           2000        200
+                           2001        350
+                           2002        450
+부산                                   400
+부산                       2000        100
+부산                       2001        150
+부산                       2002        150
+서울                                   600
+서울                       2000        100
+서울                       2001        200
+서울                       2002        300
+
+12 행이 선택되었습니다.
+
+SQL> select ename from emp where sal > scott;
+select ename from emp where sal > scott
+                                  *
+1행에 오류:
+ORA-00904: "SCOTT": 부적합한 식별자
+
+
+SQL> select ename
+  2  from emp
+  3  where sal>(select sal from emp where ename = 'SCOTT')
+  4  ;
+
+ENAME
+---------------
+KING
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename
+  2  from emp
+  3* where sal>(select sal from emp where ename = 'KING')
+  4  /
+
+선택된 레코드가 없습니다.
+
+SQL> select ename
+  2  from emp
+  3  where sal < (select sal from emp where ename = 'SCOTT');
+
+ENAME
+---------------
+SMITH
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+TURNER
+ADAMS
+JAMES
+MILLER
+
+11 행이 선택되었습니다.
+
+SQL>
+SQL> select ename, sal, deptno
+  2  from emp
+  3  where ename = (select min(ename) from emp);
+
+ENAME                  SAL     DEPTNO
+--------------- ---------- ----------
+ADAMS                 1100         20
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename, sal
+  2  from emp
+  3* where sal < (select avg(sal) from emp)
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename, sal
+  2  from emp
+  3* where sal < (select avg(sal) from emp)
+SQL> /
+
+ENAME                  SAL
+--------------- ----------
+SMITH                  800
+ALLEN                 1600
+WARD                  1250
+MARTIN                1250
+TURNER                1500
+ADAMS                 1100
+JAMES                  950
+MILLER                1300
+
+8 행이 선택되었습니다.
+
+SQL> select sal from emp where avg(sal);
+select sal from emp where avg(sal)
+                          *
+1행에 오류:
+ORA-00934: 그룹 함수는 허가되지 않습니다
+
+
+SQL> select sal from emp avg(sal);
+select sal from emp avg(sal)
+                       *
+1행에 오류:
+ORA-00933: SQL 명령어가 올바르게 종료되지 않았습니다
+
+
+SQL> select avg(sal) from emp;
+
+  AVG(SAL)
+----------
+2073.21429
+
+SQL> select ename, deptno
+  2  from emp
+  3  where deptno = (select deptno from dept where dname = 'Sales');
+
+선택된 레코드가 없습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename, deptno
+  2  from emp
+  3* where deptno = (select deptno from dept where dname = 'sales')
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename, deptno
+  2  from emp
+  3* where deptno = (select deptno from dept where dname = 'sales')
+SQL> /
+
+선택된 레코드가 없습니다.
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename, deptno
+  2  from emp
+  3* where deptno = (select deptno from dept where dname = 'SALES')
+SQL> /
+
+ENAME               DEPTNO
+--------------- ----------
+ALLEN                   30
+WARD                    30
+MARTIN                  30
+BLAKE                   30
+TURNER                  30
+JAMES                   30
+
+6 행이 선택되었습니다.
+
+SQL> select ename, sal, deptno
+  2  from emp
+  3  where ename = (select min(ename) from emp group by deptno);
+where ename = (select min(ename) from emp group by deptno)
+               *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다.
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename, sal, deptno
+  2  from emp
+  3* where ename in (select min(ename) from emp group by deptno)
+SQL> /
+
+ENAME                  SAL     DEPTNO
+--------------- ---------- ----------
+ALLEN                 1600         30
+CLARK                 2450         10
+ADAMS                 1100         20
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename, sal, deptno
+  2  from emp
+  3* where ename any (select min(ename) from emp group by deptno)
+SQL> /
+where ename any (select min(ename) from emp group by deptno)
+            *
+3행에 오류:
+ORA-00920: 관계 연산자가 부적합합니다
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select ename, sal, deptno
+  2  from emp
+  3* where ename = any (select min(ename) from emp group by deptno)
+SQL> /
+
+ENAME                  SAL     DEPTNO
+--------------- ---------- ----------
+ALLEN                 1600         30
+CLARK                 2450         10
+ADAMS                 1100         20
+
+SQL>
+SQL>
+SQL> select ename, sal, deptno
+  2  from emp outer
+  3  where sal> (select avg(sal) from emp where deptno = outer.deptno);
+
+ENAME                  SAL     DEPTNO
+--------------- ---------- ----------
+ALLEN                 1600         30
+JONES                 2975         20
+BLAKE                 2850         30
+SCOTT                 3000         20
+KING                  5000         10
+FORD                  3000         20
+
+6 행이 선택되었습니다.
+
+SQL> select empno, (select ename from emp in_emp where in_emp.empno = e.empno)
+  2  from emp e;
+
+     EMPNO (SELECTENAMEFROMEMPI
+---------- --------------------
+      7369 SMITH
+      7499 ALLEN
+      7521 WARD
+      7566 JONES
+      7654 MARTIN
+      7698 BLAKE
+      7782 CLARK
+      7788 SCOTT
+      7839 KING
+      7844 TURNER
+      7876 ADAMS
+      7900 JAMES
+      7902 FORD
+      7934 MILLER
+
+14 행이 선택되었습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH           CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN           SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD            SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES           MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN          SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE           MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT           ANALYST               7566 82/12/09       3000                    20
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER          SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS           CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES           CLERK                 7698 81/12/03        950                    30
+      7902 FORD            ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL>
+SQL> select deptno, empno, ename, sal
+  2  from emp
+  3  where (deptno, sal) in (select deptno, max(sal) from emp group by deptno);
+
+    DEPTNO      EMPNO ENAME                  SAL
+---------- ---------- --------------- ----------
+        30       7698 BLAKE                 2850
+        20       7788 SCOTT                 3000
+        10       7839 KING                  5000
+        20       7902 FORD                  3000
+
+SQL> select e.deptno, e.empno, e.ename, e.sal
+  2  from emp e, (select s.deptno, max(s.sal) msal
+  3  from emp s group by deptno) m
+  4  where e.deptno = m.deptno and e.sal =.msal;
+where e.deptno = m.deptno and e.sal =.msal
+                                     *
+4행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select e.deptno, e.empno, e.ename, e.sal
+  2  from emp e, (select s.deptno, max(s.sal) msal
+  3  from emp s group by deptno) m
+  4* where e.deptno = m.deptno and e.sal =m.msal
+SQL> /
+
+    DEPTNO      EMPNO ENAME                  SAL
+---------- ---------- --------------- ----------
+        30       7698 BLAKE                 2850
+        10       7839 KING                  5000
+        20       7788 SCOTT                 3000
+        20       7902 FORD                  3000
+
+SQL> select deptno, empno, ename, sla
+  2  from emp e
+  3  where e.sal = (select max(sal)
+  4  from emp where deptno = e.deptno);
+select deptno, empno, ename, sla
+                             *
+1행에 오류:
+ORA-00904: "SLA": 부적합한 식별자
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  select deptno, empno, ename, sal
+  2  from emp e
+  3  where e.sal = (select max(sal)
+  4* from emp where deptno = e.deptno)
+SQL> /
+
+    DEPTNO      EMPNO ENAME                  SAL
+---------- ---------- --------------- ----------
+        30       7698 BLAKE                 2850
+        20       7788 SCOTT                 3000
+        10       7839 KING                  5000
+        20       7902 FORD                  3000
+
+SQL> select * from emp;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH           CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN           SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD            SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES           MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN          SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE           MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT           ANALYST               7566 82/12/09       3000                    20
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER          SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS           CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES           CLERK                 7698 81/12/03        950                    30
+      7902 FORD            ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select deptno, empno, ename, sal from emp;
+
+    DEPTNO      EMPNO ENAME                  SAL
+---------- ---------- --------------- ----------
+        20       7369 SMITH                  800
+        30       7499 ALLEN                 1600
+        30       7521 WARD                  1250
+        20       7566 JONES                 2975
+        30       7654 MARTIN                1250
+        30       7698 BLAKE                 2850
+        10       7782 CLARK                 2450
+        20       7788 SCOTT                 3000
+        10       7839 KING                  5000
+        30       7844 TURNER                1500
+        20       7876 ADAMS                 1100
+        30       7900 JAMES                  950
+        20       7902 FORD                  3000
+        10       7934 MILLER                1300
+
+14 행이 선택되었습니다.
+
+SQL>
+SQL> select rownum, ename, sal
+  2  from emp
+  3  where hiredate like '81%' and rownum < 4
+  4  order by sal desc;
+
+    ROWNUM ENAME                  SAL
+---------- --------------- ----------
+         3 JONES                 2975
+         1 ALLEN                 1600
+         2 WARD                  1250
+
+SQL> select rownum, ename, sal
+  2  from (select * from emp where hiredate like '81%' order by sal desc)
+  3  where rownum<4;
+
+    ROWNUM ENAME                  SAL
+---------- --------------- ----------
+         1 KING                  5000
+         2 FORD                  3000
+         3 JONES                 2975
+
+SQL> select ename from emp
+  2  union
+  3  select dname from dept;
+
+ENAME
+---------------
+ACCOUNTING
+ADAMS
+ALLEN
+BLAKE
+CLARK
+FORD
+JAMES
+JONES
+KING
+MARTIN
+MILLER
+OPERATIONS
+RESEARCH
+SALES
+SCOTT
+SMITH
+TURNER
+WARD
+
+18 행이 선택되었습니다.
+
+SQL> select sal, ename,
+  2  rank() over (order by sal desc) as rank,
+  3  dense_rank() over (order by sal desc) as dense_rank,
+  4  row_number() over (order by sal desc) as row_number,
+  5  rownum as "rownum"
+  6  from emp;
+
+       SAL ENAME                 RANK DENSE_RANK ROW_NUMBER     rownum
+---------- --------------- ---------- ---------- ---------- ----------
+      5000 KING                     1          1          1          9
+      3000 FORD                     2          2          2         13
+      3000 SCOTT                    2          2          3          8
+      2975 JONES                    4          3          4          4
+      2850 BLAKE                    5          4          5          6
+      2450 CLARK                    6          5          6          7
+      1600 ALLEN                    7          6          7          2
+      1500 TURNER                   8          7          8         10
+      1300 MILLER                   9          8          9         14
+      1250 WARD                    10          9         10          3
+      1250 MARTIN                  10          9         11          5
+      1100 ADAMS                   12         10         12         11
+       950 JAMES                   13         11         13         12
+       800 SMITH                   14         12         14          1
+
+14 행이 선택되었습니다.
+
+SQL> create table book (
+  2  book id number(5),
+  3  title varchar2(50),
+  4  author varchar2(10),
+  5  pub_date date );
+book id number(5),
+        *
+2행에 오류:
+ORA-00907: 누락된 우괄호
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  create table book (
+  2  book id number(5),
+  3  title varchar2(50),
+  4  author varchar2(10),
+  5  pub_date date
+  6* );
+SQL> /
+book id number(5),
+        *
+2행에 오류:
+ORA-00907: 누락된 우괄호
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  create table book (
+  2  book_id number(5),
+  3  title varchar2(50),
+  4  author varchar2(10),
+  5  pub_date date
+  6* );
+SQL> /
+);
+ *
+6행에 오류:
+ORA-00922: 누락된 또는 부적합한 옵션
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  create table book (
+  2  book_id number(5),
+  3  title varchar2(50),
+  4  author varchar2(10),
+  5* pub_date DATE);
+SQL> /
+pub_date DATE);
+              *
+5행에 오류:
+ORA-00922: 누락된 또는 부적합한 옵션
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  create table book (
+  2  book_id number(5),
+  3  title varchar2(50),
+  4  author varchar2(10),
+  5* pub_date date);
+SQL> /
+pub_date date);
+              *
+5행에 오류:
+ORA-00922: 누락된 또는 부적합한 옵션
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  create table book (
+  2  book_id number(5),
+  3  title varchar2(50),
+  4  author varchar2(10),
+  5* pub_date date)
+SQL> /
+
+테이블이 생성되었습니다.
+
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(50)
+ AUTHOR
+                                          VARCHAR2(10)
+ PUB_DATE
+                                          DATE
+
+SQL> select * from titlel
+  2
+SQL> select * from title;
+select * from title
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+SQL> select * from numner;
+select * from numner
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+SQL> create table account_emp as (
+  2  select * from emp where deptno =
+  3  ;
+
+*
+3행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> select * from dept;
+
+    DEPTNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> create table account_emp as (
+  2  select * from emp where deptno = 10);
+
+테이블이 생성되었습니다.
+
+SQL> select * from account_emp;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+
+SQL> select * from emp;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH           CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN           SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD            SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES           MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN          SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE           MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT           ANALYST               7566 82/12/09       3000                    20
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER          SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS           CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES           CLERK                 7698 81/12/03        950                    30
+      7902 FORD            ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> select * from emp
+  2  order by deptno;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+      7566 JONES           MANAGER               7839 81/04/02       2975                    20
+      7902 FORD            ANALYST               7566 81/12/03       3000                    20
+      7876 ADAMS           CLERK                 7788 83/01/12       1100                    20
+      7369 SMITH           CLERK                 7902 80/12/17        800                    20
+      7788 SCOTT           ANALYST               7566 82/12/09       3000                    20
+      7521 WARD            SALESMAN              7698 81/02/22       1250        500         30
+      7844 TURNER          SALESMAN              7698 81/09/08       1500                    30
+      7499 ALLEN           SALESMAN              7698 81/02/20       1600        300         30
+      7900 JAMES           CLERK                 7698 81/12/03        950                    30
+      7698 BLAKE           MANAGER               7839 81/05/01       2850                    30
+      7654 MARTIN          SALESMAN              7698 81/09/28       1250       1400         30
+
+14 행이 선택되었습니다.
+
+SQL> alter table book add(pubs varchar2(50));
+
+테이블이 변경되었습니다.
+
+SQL> desc
+사용법: DESCRIBE [schema.]object[@db_link]
+SQL> select desc;
+select desc
+       *
+1행에 오류:
+ORA-00936: 누락된 표현식
+
+
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(50)
+ AUTHOR
+                                          VARCHAR2(10)
+ PUB_DATE
+                                          DATE
+ PUBS
+                                          VARCHAR2(50)
+
+SQL> alter table book modify(title varchar2(100));
+
+테이블이 변경되었습니다.
+
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(100)
+ AUTHOR
+                                          VARCHAR2(10)
+ PUB_DATE
+                                          DATE
+ PUBS
+                                          VARCHAR2(50)
+
+SQL> desc emp
+ 이름                                                                                                                                            널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ EMPNO                                                                                                                                           NOT NULL NUMBER(4)
+ ENAME                                                                                                                                                    VARCHAR2(10)
+ JOB                                                                                                                                                      VARCHAR2(9)
+ MGR                                                                                                                                                      NUMBER(4)
+ HIREDATE                                                                                                                                                 DATE
+ SAL                                                                                                                                                      NUMBER(7,2)
+ COMM                                                                                                                                                     NUMBER(7,2)
+ DEPTNO                                                                                                                                                   NUMBER(2)
+
+SQL> desc comm
+ERROR:
+ORA-04043: comm 객체는 존재하지 않습니다.
+
+
+SQL> desc dept
+ 이름                                                                                                                                            널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ DEPTNO                                                                                                                                                   NUMBER(2)
+ DNAME                                                                                                                                                    VARCHAR2(14)
+ LOC                                                                                                                                                      VARCHAR2(13)
+
+SQL> m
+SP2-0042: 알 수 없는 명령어 "m" - 나머지 줄 무시.
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(100)
+ AUTHOR
+                                          VARCHAR2(10)
+ PUB_DATE
+                                          DATE
+ PUBS
+                                          VARCHAR2(50)
+
+SQL> alter table book drop (author);
+
+테이블이 변경되었습니다.
+
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(100)
+ PUB_DATE
+                                          DATE
+ PUBS
+                                          VARCHAR2(50)
+
+SQL> alter table book set unused (author);
+alter table book set unused (author)
+                             *
+1행에 오류:
+ORA-00904: "AUTHOR": 부적합한 식별자
+
+
+SQL> alter table book drop unused columns;
+
+테이블이 변경되었습니다.
+
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(100)
+ PUB_DATE
+                                          DATE
+ PUBS
+                                          VARCHAR2(50)
+
+SQL> create table author(
+  2  author_id number(10) constraint pk_author primary key,
+  3  author_name varchar2(100) constraint not_null_author not null,
+  4  author_desc varchar2(500);
+author_desc varchar2(500)
+                        *
+4행에 오류:
+ORA-00907: 누락된 우괄호
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  create table author(
+  2  author_id number(10) constraint pk_author primary key,
+  3  author_name varchar2(100) constraint not_null_author not null,
+  4* author_desc varchar2(500)
+SQL> /
+author_desc varchar2(500)
+                        *
+4행에 오류:
+ORA-00907: 누락된 우괄호
+
+
+SQL> ed
+file afiedt.buf(이)가 기록되었습니다
+
+  1  create table author(
+  2  author_id number(10) constraint pk_author primary key,
+  3  author_name varchar2(100) constraint not_null_author not null,
+  4* author_desc varchar2(500))
+SQL> /
+
+테이블이 생성되었습니다.
+
+SQL> desc author
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ AUTHOR_ID
+                                 NOT NULL NUMBER(10)
+ AUTHOR_NAME
+                                 NOT NULL VARCHAR2(100)
+ AUTHOR_DESC
+                                          VARCHAR2(500)
+
+SQL> SELECT UC.CONSTRAINT_NAME, UC.TABLE_NAME, UCC.COLUMN_NAME,
+  2  UC.CONSTRAINT_TYPE, UC.R_CONSTRAINT_NAME, UC.SEARCH_CONDITION
+  3  FROM USER_CONSTRAINTS UC JOIN USER_CONS_COLUMNS UCC
+  4  ON UC.CONSTRAINT_NAME = UCC.CONSTRAINT_NAME
+  5  WHERE UC.TABLE_NAME = 'AUTHOR'
+  6  ;
+
+CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CO
+--
+R_CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SEARCH_CONDITION
+--------------------------------------------------------------------------------
+NOT_NULL_AUTHOR
+AUTHOR
+AUTHOR_NAME
+C
+
+"AUTHOR_NAME" IS NOT NULL
+
+PK_AUTHOR
+AUTHOR
+AUTHOR_ID
+P
+
+
+
+
+SQL> desc author
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ AUTHOR_ID
+                                 NOT NULL NUMBER(10)
+ AUTHOR_NAME
+                                 NOT NULL VARCHAR2(100)
+ AUTHOR_DESC
+                                          VARCHAR2(500)
+
+SQL>
+SQL> alter table book add(author_id number(10))
+  2  ;
+
+테이블이 변경되었습니다.
+
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(100)
+ PUB_DATE
+                                          DATE
+ PUBS
+                                          VARCHAR2(50)
+ AUTHOR_ID
+                                          NUMBER(10)
+
+SQL> select * from book
+  2  ;
+
+선택된 레코드가 없습니다.
+
+SQL> select * from Author_id
+  2  ;
+select * from Author_id
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+SQL> alter table book add constraint fk_book_author foreign key(author_id0
+  2  references author(author_id);
+references author(author_id)
+*
+2행에 오류:
+ORA-00907: 누락된 우괄호
+
+
+SQL> alter table book add constraint fk_book_author foreign key(author_id)
+  2  references author(author_id);
+
+테이블이 변경되었습니다.
+
+SQL> desc reference
+ERROR:
+ORA-04043: reference 객체는 존재하지 않습니다.
+
+
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(100)
+ PUB_DATE
+                                          DATE
+ PUBS
+                                          VARCHAR2(50)
+ AUTHOR_ID
+                                          NUMBER(10)
+
+SQL> desc author
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ AUTHOR_ID
+                                 NOT NULL NUMBER(10)
+ AUTHOR_NAME
+                                 NOT NULL VARCHAR2(100)
+ AUTHOR_DESC
+                                          VARCHAR2(500)
+
+SQL> desc author_id
+ERROR:
+ORA-04043: author_id 객체는 존재하지 않습니다.
+
+
+SQL> select * from author_id
+  2  ;
+select * from author_id
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+SQL> alter table emp add primary key (empno);
+
+테이블이 변경되었습니다.
+
+SQL> alter table emp add primary key (deptno);
+alter table emp add primary key (deptno)
+                    *
+1행에 오류:
+ORA-02260: 테이블에는 하나의 기본 키만 가질 수 있습니다.
+
+
+SQL> alter table dept add primary key (deptno);
+
+테이블이 변경되었습니다.
+
+SQL> alter table emp add foreign key (deptno) references dept(deptno);
+
+테이블이 변경되었습니다.
+
+SQL> select * from emp;
+
+     EMPNO ENAME           JOB                    MGR HIREDATE        SAL       COMM     DEPTNO
+---------- --------------- --------------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH           CLERK                 7902 80/12/17        800                    20
+      7499 ALLEN           SALESMAN              7698 81/02/20       1600        300         30
+      7521 WARD            SALESMAN              7698 81/02/22       1250        500         30
+      7566 JONES           MANAGER               7839 81/04/02       2975                    20
+      7654 MARTIN          SALESMAN              7698 81/09/28       1250       1400         30
+      7698 BLAKE           MANAGER               7839 81/05/01       2850                    30
+      7782 CLARK           MANAGER               7839 81/06/09       2450                    10
+      7788 SCOTT           ANALYST               7566 82/12/09       3000                    20
+      7839 KING            PRESIDENT                  81/11/17       5000                    10
+      7844 TURNER          SALESMAN              7698 81/09/08       1500                    30
+      7876 ADAMS           CLERK                 7788 83/01/12       1100                    20
+      7900 JAMES           CLERK                 7698 81/12/03        950                    30
+      7902 FORD            ANALYST               7566 81/12/03       3000                    20
+      7934 MILLER          CLERK                 7782 82/01/23       1300                    10
+
+14 행이 선택되었습니다.
+
+SQL> desc dept
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ DEPTNO
+                                 NOT NULL NUMBER(2)
+ DNAME
+                                          VARCHAR2(14)
+ LOC
+                                          VARCHAR2(13)
+
+SQL> desc book
+ 이름
+                                 널?      유형
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ BOOK_ID
+                                          NUMBER(5)
+ TITLE
+                                          VARCHAR2(100)
+ PUB_DATE
+                                          DATE
+ PUBS
+                                          VARCHAR2(50)
+ AUTHOR_ID
+                                          NUMBER(10)
+
+SQL> select * from tabl
+  2
+SQL> select * from tab;
+
+TNAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+ACCOUNT_EMP
+TABLE
+
+AUTHOR
+TABLE
+
+BONUS
+TABLE
+
+BOOK
+TABLE
+
+DEPT
+TABLE
+
+EMP
+TABLE
+
+SALESDATA
+TABLE
+
+SALGRADE
+TABLE
+
+
+8 행이 선택되었습니다.
+
+SQL> SELECT UC.CONSTRAINT_NAME, UC.TABLE_NAME, UCC.COLUMN_NAME,
+  2  UC.CONSTRAINT_TYPE, UC.R_CONSTRAINT_NAME, UC.SEARCH_CONDITION
+  3  FROM USER_CONSTRAINTS UC JOIN USER_CONS_COLUMNS UCC
+  4  ON UC.CONSTRAINT_NAME = UCC.CONSTRAINT_NAME
+  5  WHERE UC.TABLE_NAME = 'DEPT';
+
+CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CO
+--
+R_CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SEARCH_CONDITION
+--------------------------------------------------------------------------------
+SYS_C007305
+DEPT
+DEPTNO
+P
+
+
+
+
+SQL> SELECT UC.CONSTRAINT_NAME, UC.TABLE_NAME, UCC.COLUMN_NAME,
+  2  UC.CONSTRAINT_TYPE, UC.R_CONSTRAINT_NAME, UC.SEARCH_CONDITION
+  3  FROM USER_CONSTRAINTS UC JOIN USER_CONS_COLUMNS UCC
+  4  ON UC.CONSTRAINT_NAME = UCC.CONSTRAINT_NAME
+  5  WHERE UC.TABLE_NAME = 'EMP'
+  6  ;
+
+CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CO
+--
+R_CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SEARCH_CONDITION
+--------------------------------------------------------------------------------
+SYS_C007306
+EMP
+DEPTNO
+R
+SYS_C007305
+
+
+SYS_C007299
+EMP
+EMPNO
+C
+
+"EMPNO" IS NOT NULL
+
+SYS_C007304
+EMP
+EMPNO
+P
+
+
+
+
+SQL> set lines 100
+SQL> SELECT UC.CONSTRAINT_NAME, UC.TABLE_NAME, UCC.COLUMN_NAME,
+  2  UC.CONSTRAINT_TYPE, UC.R_CONSTRAINT_NAME, UC.SEARCH_CONDITION
+  3  FROM USER_CONSTRAINTS UC JOIN USER_CONS_COLUMNS UCC
+  4  ON UC.CONSTRAINT_NAME = UCC.CONSTRAINT_NAME
+  5  WHERE UC.TABLE_NAME = 'AUTHOR'
+  6  ;
+
+CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------
+TABLE_NAME
+----------------------------------------------------------------------------------------------------
+COLUMN_NAME
+----------------------------------------------------------------------------------------------------
+CO
+--
+R_CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------
+SEARCH_CONDITION
+--------------------------------------------------------------------------------
+NOT_NULL_AUTHOR
+AUTHOR
+AUTHOR_NAME
+C
+
+"AUTHOR_NAME" IS NOT NULL
+
+PK_AUTHOR
+AUTHOR
+AUTHOR_ID
+P
+
+
+
+
+SQL> set lines 300
+SQL> SELECT UC.CONSTRAINT_NAME, UC.TABLE_NAME, UCC.COLUMN_NAME,
+  2  UC.CONSTRAINT_TYPE, UC.R_CONSTRAINT_NAME, UC.SEARCH_CONDITION
+  3  FROM USER_CONSTRAINTS UC JOIN USER_CONS_COLUMNS UCC
+  4  ON UC.CONSTRAINT_NAME = UCC.CONSTRAINT_NAME
+  5  WHERE UC.TABLE_NAME = 'AUTHOR'
+  6  ;
+
+CONSTRAINT_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CO R_CONSTRAINT_NAME
+-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SEARCH_CONDITION
+--------------------------------------------------------------------------------
+NOT_NULL_AUTHOR
+AUTHOR
+AUTHOR_NAME
+C
+"AUTHOR_NAME" IS NOT NULL
+
+PK_AUTHOR
+AUTHOR
+AUTHOR_ID
+P
+
+
+
+SQL>
