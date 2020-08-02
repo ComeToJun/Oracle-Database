@@ -1,0 +1,290 @@
+JDBC (Interface로 만들어져 있음)
+사용방법을 규정해 놓겠다.
+
+실제 처리는 알아서 해라
+
+오라클에서 제공하는 JDBS 를 이용해서 구현한 것들로 자바와 연동시키는 것.
+
+ Oracle 설치파일 > dbhomexe > jdbc > lib > 첫번째 ojdbc8.jar
+
+여기에 구현 클래스가 전부 모여있음
+
+이클립스 properties > java build path add > External > lib 에서 첫번째꺼 찾아서 선택 (준비 완료)
+
+이클립스에서 프록젝트 패키지 클래스 준비 (main 포함)
+
+String url = "jdbs:oracle:thin:@localhost:1521:xe";
+		** 운영체계마다 다름, 외부에서 사용하려면 아이피 주소 필요 
+		**끝에 xe가 붙은 이유 
+
+network > admin > listener.ora 에서 확인 가능.
+***** admin 밑에 있는 파일들은 민감하니 조심할 것.
+
+
+커멘드창 열고 tnsping xe 입력해서 잘 되면 제대로 진행된다는 말.
+
+sb.append("SELECT FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE ");
+sb.append("FROM EMPLOYEES "); 마지막 " 한칸 스페이스 공간 주는거 중요
+sb.append("WHERE FIRST_NAME LIKE ? OR LAST_NAME = ?"); **마지막 구문은 붙여도 괜찮음
+
+*************************************************************************************
+package com.junoracle.main;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ProjectMain {
+	public static void main(String[] args) {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String username = "c##hr";
+		String password = "1234";
+
+		Connection conn = null;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (Exception e) {
+			System.out.println("### 1");
+			e.printStackTrace();
+		}
+		for (int i = 0; i < 10000; i++) {
+		}
+
+		try {
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("### 2");
+			e.printStackTrace();
+		}
+	}
+}
+
+*******************************************************************************기본구문
+
+
+
+package com.junoracle.main;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class ProjectMain {
+	public static void main(String[] args) {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String username = "c##hr";
+		String password = "1234";
+
+		Connection conn = null;
+		StringBuffer sb = new StringBuffer();
+		PreparedStatement pStmt = null;
+		String name = "Su";
+		ResultSet rSet = null;
+		String firstName, lastName, email, phoneNumber, hireDate;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (Exception e) {
+			System.out.println("### 1");
+			e.printStackTrace();
+		}
+
+		sb.append("SELECT FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE ");
+		sb.append("FROM EMPLOYEES ");
+		sb.append("WHERE FIRST_NAME LIKE ? OR LAST_NAME = ?");
+
+		String sql = sb.toString();
+
+		try {
+			pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, "%" + name + "%");
+			pStmt.setString(2, "%" + name + "%");
+
+			rSet = pStmt.executeQuery();
+
+			while (rSet.next()) {
+				firstName = rSet.getString(1);
+				lastName = rSet.getString(2);
+				email = rSet.getString(3);
+				phoneNumber = rSet.getString(4);
+				hireDate = rSet.getDate(5).toString();
+				System.out.println("First name : " + firstName);
+				System.out.println("Last name : " + lastName);
+				System.out.println("Email : " + email);
+				System.out.println("pPhone Number : " + phoneNumber);
+				System.out.println("Hire Date : " + hireDate);
+				System.out.println();		//굳이 이렇게 해야하겠는가(자바빈을 이용해서 해결 가능) ** 잠시 쓸꺼니까!
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+
+				if (rSet != null)
+					rSet.close();
+				if (pStmt != null)
+					pStmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			for (int i = 0; i < 10000; i++) {
+			}
+
+			try {
+				conn.close();
+			} catch (Exception e) {
+				System.out.println("### 2");
+				e.printStackTrace();
+			}
+		}
+	}
+}
+
+****************************************************************************************like 써서 이름 가져오기
+
+오라클 드라이버 올리고 접속하고 쿼리문 만들고 프리페어에다 쿼리문 넣고 객체를 만들어서 pStmt 메소드에
+쿼리문 넘겨서 객체 만들어 레퍼런스 받고, ? 에 값 넣기
+
+타입에 따라서 set 이 바뀌게 됨.
+
+executeQuery 로 날려서 rSet 으로 만든다
+
+몇줄 나올지 모르니 while 로 돌리고 각 나올 것들을 get 으로 타입 잡아주고
+다 나오고 나면 전부다 하나씩 닫아줘야 함. try catch 문 이용해서 에러 잡아주기
+
+프로젝트는 이것을 이용해서 뭔가를 던져주면,
+결과 출력하기.
+
+
+***** 자바빈을 이용해서 셋 겟 객체를 얻어 코딩을 단순화 시키기.
+
+***********************************************************************************************
+
+package com.junoracle.main;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.junoracle.model.Employees;
+
+public class ProjectMain {
+	public static void main(String[] args) {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String username = "c##hr";
+		String password = "1234";
+
+		Connection conn = null;
+		StringBuffer sb = new StringBuffer();
+		PreparedStatement pStmt = null;
+		String name = "Su";
+		ResultSet rSet = null;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (Exception e) {
+			System.out.println("### 1");
+			e.printStackTrace();
+		}
+
+		sb.append("SELECT FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE ");
+		sb.append("FROM EMPLOYEES ");
+		sb.append("WHERE FIRST_NAME LIKE ? OR LAST_NAME = ?");
+
+		String sql = sb.toString();
+		Employees employee = new Employees();
+
+		try {
+			pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, "%" + name + "%");
+			pStmt.setString(2, "%" + name + "%");
+
+			rSet = pStmt.executeQuery();
+
+			while (rSet.next()) {
+				employee.setFirstName(rSet.getString(1));
+				employee.setLastName(rSet.getString(2));
+				employee.setEmail(rSet.getString(3));
+				employee.setPhonNumber(rSet.getString(4));
+				employee.setHireDate(rSet.getDate(5).toString());
+				System.out.println("First name : " + employee.getFirstName());
+				System.out.println("Last name : " + employee.getLastName());
+				System.out.println("Email : " + employee.getEmail());
+				System.out.println("pPhone Number : " + employee.getPhonNumber());
+				System.out.println("Hire Date : " + employee.getHireDate());
+				System.out.println();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+
+				if (rSet != null)
+					rSet.close();
+				if (pStmt != null)
+					pStmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			for (int i = 0; i < 10000; i++) {
+			}
+
+			try {
+				conn.close();
+			} catch (Exception e) {
+				System.out.println("### 2");
+				e.printStackTrace();
+			}
+		}
+	}
+}
+
+****************************************************************************************get set 으로 자바빈 만들어 간단화 시키기
+
+
+하지만! 이것도 마음에 안드니 더 간단하게 만들어보자!
+
+****************************************************
+사용자용 애플리케이션 만들건데
+디비의 컨넥션을 만들어서 쿼리를 날리는건 좋은데
+
+일일이 변수를 만드는 것보다는 자바 빈이 나을건데
+자바빈은 타이핑을 더 하게 만들었다.
+
+자바빈으로는 뭐가 이득인가.
+
+다른 쿼리를 만들때 재사용을 할 수 있다.
+하나의 객체는 그대로 두고
+다른거를 만들때 재사용이 가능하다!
+*******************************************************
+
+다양한 쿼리를 요구하게 될거니 
+방금 만든걸로는 지저분하게 만들어질 수 밖에 없을거다
+
+static을 만들어서 한다고 해도 동일한 부분의 중복은 생길 수 밖에 없다.
+
+나중에 가면 관리가 안될정도로 복잡해지니
+데이타베이스 관련된것만 따로 모아놓은 객체를 만들자.
+
+그러한 것을
+DAO(Data Access Object)라고 한다.
+
+결국은 각각의 쿼리들을 하나의 기능의 메소드로 만들면 될거다
+그래서 메소드를 호출해서 사용하면 될거다.
+
+HrDao 를 통해 미니프로젝트를 진행할거고 정리하는 것 위주로 들어갈 듯.
+
+
+
+
