@@ -1,0 +1,403 @@
+Index
+
+Index - Default 로 생성되는 것
+PK 생성시 자동으로 Index 가 생성됨
+Unique 걸어도 Index 가 생성됨
+
+그 외는 DBA가 직접 만든다. (퍼포먼스에 영향을 주기 때문에 아무나 만들면 안됨)
+
+Index 라는건,
+emp 테이블 내에 있는 empno 가 있다고 했을때, 
+데이터 빈 곳에 넣는다면, 넣는 순서대로 메모리가 들어감
+
+정의 
+- 테이블의 데이터를 보다 빠르게 검색할 수 있는 자료 구조
+- 목적 정의에서 언급된 것처럼 테이블의 검색 속도를 높이기 위해 사용
+
+그 메모리들이 index 
+
+pk가 있는 컬럼에 있는 index들을 index 자체적으로 order by 하고 그 안에서 pk 를 참조하여
+index 값을 가져옴
+
+근데, 이렇게 되면 index 가 100만개일때 하나씩 찾아서 가야하니 시간이 걸릴 수 밖에 없다.
+이 문제를 해결하기 위해서 필요한 개념이 balanced tree
+
+index는 balanced tree 를 근간으로 만들어진다
+head 에서 밑으로 분배되는 index들을 균등하게 분배
+
+새로 들어오는 부분은 예를 들어 알파벳 순서라면 순서에 맞춰 사이사이 들어가게 된다.
+기본적인 정형화된 틀(8byte) 에 맞춰 순서대로 들어가고, 틀에 맞춰진 양을 초과하게 되면
+새로운게 생기면서 분할된다. 
+
+대신 분할되어 만들어진 공간에 있는 정보를 삭제할시, 다시 밸런스에 맞춰 줄어드는게 아닌
+기존의 공간은 그대로 유지 (공간보다 시간이 비쌈) 공간을 유지해서 나중에 다시 새로운게
+들어왔을때 그대로 받아들여 시간적인 부분을 절약하기 위해 사용
+
+각각의 index 는 참조할 수 있는 주소를 갖는데, 참조주소를 통해 검색이 용이해지고
+빠른 속도로 많은 데이터 안에서 필요한 정보를 찾을 수 있게 해줌
+
+
+
+
+자료구조
+다수의 데이터를 보관하는데 어떤 구조로 보관해야 검색이나 수정 삭제가 용이한지를 효율적인지를 연구
+
+자료구조 중 Tree 라는 개념이 있음.
+나무를 뒤집어 놓은 형태
+
+
+Insert 배움
+
+insert into author
+values (1, '박경리', '토지 작가');
+
+*** 만약 default 값을 주고 싶으면 해당 행에 default 를 넣으면 됨
+예) 2번째 행인 박경리를 default 를 주고 싶다면, 즉 아무것도 넣고 싶지 않다면
+
+insert into author
+values (1, default, '토지 작가');
+*** ' '  붙이지 말고 그냥 default 만 넣으면 됨
+
+Update
+변경시 Rollback segment 에 임의로 변환해놓기 때문에
+새로운 창을 열어 다시 확인 시 새로운 창에서는 변환이 없음
+
+수정과 취소를 가능하게 하기 위해서,
+
+Commit; 입력 시, 다른창에서도 확인 가능
+Rollback; 입력 시, 취소
+
+delete truncate 의 차이점
+delete는 rollback 가능하나 대량의 log 를 발생 truncate 보다 느림
+truncate 는 rollback 불가능, 그냥 전부 날려버림 (commit 도 필요 없음)
+
+모든 DML 문은 intergrity constraint 를 어길 경우 에러 발생
+
+
+Transaction
+
+db 에서 하나의 작업으로 처리되는 논리적 작업 단위
+DBMS 의 Concurrency control 과 Recovery 에서 중요한 역할을 수행.  ****계좌이체
+
+ACID property
+Atomicity: all or nothing 하나의 단위로 처리되어야 함( 중간까지만 처리는 불가)
+Consistency: 데이터베이스의 일관성(무결성) 을 깨지 않아야 함
+Isolation: 다른 transaction 과 동시에 수행되더라도 독립적으로 영향을 받지 않아야 함
+Durability: 한번 수행 완료 되면 영원히 반영되어야 함 (crush 상황에서라도)
+
+예) 은행에서 계좌이체시, 돈을 보낼때 중간에 문제 발생할때를 생각해볼것
+
+DML (INSERT, UPDATE, DELETE) 의 집합
+DDL 이나 DCL은 한 문장이 트랜잭션으로 처리됨
+
+트랜잭션 정의
+시작
+명시적인 트랜잭션 시작 명령 없음 (타 DBMS 와의 차이점)
+첫 DML 이 시작되면 트랜잭션 시작
+
+명시적 종료: COMMIT / ROLLBACK
+
+묵시적 종료
+- DDL DCL 등이 수행될때
+- SQL PLUS등에서의 정상적 종료
+- 시스템 종료
+
+DML에 의해 변경된 모든 row는 Lock 이 걸린다. (다른 트랜잭션에서 수정 불가)
+
+commit 을 하기 전에 update 된 row 를 Lock 한다.
+Lock 이 걸린 상태에서는 다른 트랜잭션이 들어올 수 없다 (waiting 상태로 대기)
+
+
+
+Deadlock ************************ 가장 중요한
+
+둘 이상의 트랜잭션이 서로 상대방의 Lock 을 순환 대기하여 어떤 트랜잭션도 더 이상 진행할 수 없는 상태
+** 이때 무한대기 상태로 변한
+
+Oracle 이 주기적으로 자동 detec 하여 에러를 돌려준다. (강제 rollback 으로 진행)
+
+평상시에는  DBM 이 한번씩 확인을 해야함. 
+**언제 어떻게 발생할지 모르기 때문에//
+
+
+Oracle hr sample database 를 받아서 실제 실습 진행
+
+해당 파일을
+D:\OracleExpressEdition\dbhomeXE\demo\schema\human_resources 에 넣었음
+커맨드 새로 시작
+
+sqlplus sys as sysdba 
+1234
+
+@hr_main.sql
+1의 값은 비밀번호
+2의 값은 전체 테이블을 어디에 만들것이냐
+3 temp
+4 로그파일 만들 곳
+
+PL/SQL procedure successfully completed. 나오면 완료//
+
+SQL> @hr_main.sql
+
+specify password for HR as parameter 1:
+1의 값을 입력하십시오: 1234
+
+specify default tablespeace for HR as parameter 2:
+2의 값을 입력하십시오: users
+
+specify temporary tablespace for HR as parameter 3:
+3의 값을 입력하십시오: temp
+
+specify log path as parameter 4:
+4의 값을 입력하십시오: d:\
+
+
+ERD 
+Entity relation diagram
+테이블간 구조와 관계를 표시한 것.
+
+select first_name, last_name, email, phone_number, hire_date
+from employees
+where first_name like '%s%' or last_name like '%j%'
+
+전체를 대문자로 바꾼 후 가져온다/
+
+select first_name || ' ' || last_name as name, email, phone_number, hire_date
+from employees
+where upper(first_name) like '%ST%' or UPPER(LAST_NAME) like '%ST%';
+
+
+최종 출력될 정보에 따라 원하는 컬럼 select 절에 추가
+원하는 정보를 가진 테이블들을 from 절에서 추가
+where 절에 알맞은 join 조건 추가
+where 절에 알맞은 검색 조건 추가
+필요에 따라 Group by, having  등을 통해 Grouping
+정렬 조건 order by 에 추가
+
+
+select e.first_name, e.last_name, e.salary
+from employees e
+where e.salary between 7000 and 15000
+order by e.salary
+
+select first_name ||' '|| last_name as name, salary
+from employees
+where salary between 7000 and 15000
+order by salary;
+
+같은 결과 값
+
+
+오라클에서 제공하는 프로그래밍 언어
+
+PL/SQL - 이거 할때는
+set serveroutput on *** default 결과값 on **습관 들이기
+
+변수 선언 방법
+
+DECLARE
+	V_NO NUMBER(4);
+	V_NAME VARCHAR2(20);
+BEGIN
+	SELECT EMPNO, ENAME
+	INTO V_NO, V_NAME
+	FROM EMP
+	WHERE EMPNO = 7369;
+	DBMS_OUTPUT.PUT_LINE(V_NO ||' '|| V_NAME);
+END;
+/
+
+PL/SQL 처리가 정상적으로 완료되었습니다. (반드시 마지막에 ; 이 있어야함)
+
+DECLARE
+	V_EMPNO 	EMP.EMPNO%TYPE;
+	V_SAL		EMP.SAL%TYPE;		**EMP 에 있는 타입을 그대로 가져와라
+BEGIN
+	SELECT EMPNO, SAL
+	INTO V_EMPNO, V_SAL
+	FROM EMP
+	WHERE EMPNO = &ID;
+	DBMS_OUTPUT.PUT_LINE(V_EMPNO ||' '|| V_SAL);
+END;
+
+/
+
+*** 여러개의 주를 가져오기 위해서,
+<커서> 를 기억할 것
+
+특정 sql 문장을 처리한 결과를 담고있는 영역을 가리키는 일종의 포인터
+커서를 사용하면처리된 SQL 문장의 결과 집합에 접근할 수 있음
+
+커서가 결과를 갖고 있음
+그 중에서 하나씩 가져온다. 
+
+1. 묵시적 커서
+오라클 내부에서 자동으로 생성되어 사용하는 커서
+pl/sql 블럭에서 DML 문장이 실행될 때마다 자동으로 생성
+
+SQL%FOUND
+	결과집합의 패치 ROW 수가 1개 이상 TURE, 아니면 FALSE
+SQL%NOTFOUND
+	결과집합의 패치 ROW 수가 0이면 TURE, 아니면 FALSE
+SQL%ROWFOUND
+	영향받은 결과 집합 ROW수, 없으면 0
+SQL%ISOPEN
+	묵시적 커서는 항상 FALSE(묵시적 커서는 실행문 종료 후 바로 닫힘)
+
+DECLARE
+V_DEPNO 	EMP.DEPTNO%TYPE := 20; 	같은 타입에 20을 할당함
+
+BEGIN
+	UPDATE EMP				DEPTNO 20에 해당하는 사람들에게
+	SET ENAME = 'MR. ' | | ENAME		MR 를 붙이겠다.	
+	WHERE DEPTNO = V_DEPTNO;
+	DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT);	그리고 그 사람들 수를 구해라	
+	COMMIT;
+END;
+/
+
+DECLARE
+		V_DEPARTMENT_ID         EMPLOYEES.DEPARTMENT_ID%TYPE := 80;
+BEGIN
+	UPDATE EMPLOYEES
+	SET FIRST_NAME = FIRST_NAME
+	WHERE DEPARTMENT_ID = V_DEPARTMENT_ID;
+ 	DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT);
+	COMMIT;
+
+END;
+//
+
+/
+
+DECLARE
+	CURSOR CUR_EMP						//커서 선언
+	IS
+	SELECT (FIRST_NAME ||' '|| LAST_NAME) AS "FULL_NAME"
+	FROM EMPLOYEES
+	WHERE DEPARTMENT_ID IN (100,110);				// IN 은 100 이거나(OR) 110
+	EMP_FULL_NAME EMPLOYEES.FIRST_NAME%TYPE;		//변수명은 같다.
+BEGIN
+	OPEN CUR_EMP;
+	LOOP
+		FETCH CUR_EMP INTO EMP_FULL_NAME;
+		EXIT WHEN CUR_EMP%NOTFOUND;
+		DBMS_OUTPUT.PUT_LINE(EMP_FULL_NAME);
+	END LOOP;
+	CLOSE CUR_EMP;
+END;
+/
+
+정의하고 오픈하고 반복해서 끄집어내서 변수 선언한곳에 넣는다. 탈출해서 반복 끝낸다.
+
+
+함수
+
+오라클이 제공하는 함수
+자주쓰는걸 불러다 쓰는 것.
+
+CREATE OR REPLACE FUNCTION FN_GET_SALARY	// 새로 만들거나 있다면 대체할것, 메소드
+(IN_EMPNO EMP.EMPNO%TYPE)			// 매개인자	
+RETURN EMP.SAL%TYPE				// 리턴 타입
+IS
+		OUT_SAL EMP.SAL%TYPE :=0;	//EMP SAL 타입으로 변환 받을값은 0
+BEGIN
+		SELECT SAL
+		INTO OUT_SAL			// 그저 객체를 만들어 놓은것
+		FROM EMP			// 이제 사용할거
+		WHERE EMPNO = IN_EMPNO;
+
+		RETURN OUT_SAL;
+END;	
+/
+
+
+SELECT FN_GET_SALARY(7788)		//사용
+from dual
+
+SELECT FN_FET_SALARY(7788)
+from emp;
+
+
+저장 프로시저
+stored Procedure
+
+function 과 다른점은 리턴값이 없어도 됨 * function 은 리턴값이 반드시 있어야함.
+
+CREATE OR REPLACE PROCEDURE SP_GET_SALARY
+(
+	IN_EMPLOYEE_ID	IN	EMPLOYEES.EMPLOYEE_ID%TYPE,
+	OUT_SALARY	OUT	EMPLOYEES.SALARY%TYPE		//IN OUT 을 반드시 지정해줘야함
+)							//OUT 이 RETURN 을 대신함
+IS
+BEGIN
+	SELECT SALARY
+	INTO OUT_SALARY
+	FROM EMPLOYEES
+	WHERE EMPLOYEE_ID = IN_EMPLOYEE_ID;
+
+END;
+/
+
+
+DECLARE OUT_SALARY EMPLOYEES.SALARY%TYPE;
+BEGIN
+SP_GET_SALARY('110', OUT_SALARY);
+DBMS_OUTPUT.PUT_LINE(OUT_SALARY);
+END;
+/
+
+멀티 ROW를 구할땐 CORSOR 를 사용해야함
+패키지를 사용해야함.
+
+
+
+프로시저 안에서
+** -- 주석달려고 할때 -- 두개 달면 됨
+
+
+CREATE OR REPLACE PACKAGE BODY CURSOR_PKG
+AS
+PROCEDURE SP_JOB_HISTORY
+(
+	IN_EMPLOYEE_ID IN EMPLOYEES.EMPLOYEE_ID%TYPE,
+	OUT_CURSOR	IN OUT T_CURSOR
+)
+IS
+BEGIN
+	OPEN OUT_CURSOR FOR
+	SELECT E.FIRST_NAME ||' '|| E.LAST_NAME AS NAME
+	,JO.JOB_TITLE AS TITLE
+	,JH.START_DATE AS SDATE
+	,JH.END_DATE AS EDATE
+	FROM EMPLOYEES E JOIN JOB_HISTORY JH
+		ON E.EMPLOYEE_ID = JH.EMPLOYEE_ID
+		JOIN JOBS JO
+		ON JH.JOB_ID = JO.JOB_ID
+	WHERE E.EMPLOYEE_ID = IN_EMPLOYEE_ID;
+END SP_JOB_HISTORY;
+END CURSOR_PKG;
+/
+
+
+DECLARE
+	TYPE T_CURSOR IS REF CURSOR;		//타입 재정의를 위한 단어 TYPE //
+	RET_CUR T_CURSOR;
+	RET_NAME 	VARCHAR2(50);
+	RET_TITLE 	VARCHAR2(50);
+	RET_SDATE 	DATE;
+	RET_EDATE 	DATE;
+BEGIN
+	CURSOR_PKG.SP_JOB_HISTORY('200', RET_CUR);
+	LOOP
+		FETCH RET_CUR INTO RET_NAME, RET_TITLE, RET_SDATE, RET_EDATE;
+		EXIT WHEN RET_CUR%NOTFOUND;
+		DBMS_OUTPUT.PUT_LINE(RET_NAME||', '||RET_TITLE||','||RET_SDATE||', '||RET_EDATE);
+	END LOOP;
+	CLOSE RET_CUR;
+END;
+
+
+
+
+///프로젝트시 사용해야 할 것들.
